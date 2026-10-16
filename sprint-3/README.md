@@ -25,7 +25,7 @@
   - ![Project ER Diagram](./ER_chap.jpg)
   - The heart and soul of our project lies in the event and submissions entities. We plan to use the events table to add all the chapel events occurring. Each chapel will have a series defined by the day of the week the event takes place. Each event will also include a location (on or off campus) and a speaker (who is talking at the chapel event), if any. 
 Since students are submitting a chapel participation form, all of this will be viewable on the submission table. Each submission will include the chapel that students want to participate in, represented by an event ID.
-- Website layout guilelines
+- Website layout examples
   - We designed a prototype web layout
   - ![Page layouts](./page_layout.jpg)
 
