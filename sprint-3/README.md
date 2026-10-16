@@ -22,4 +22,4 @@
 ### Software Design
 - Functional Decomposition- A module decomposition diagram for your system
 - ER diagram
-  - ![Project ER Diagram](./ER Chapel Diagram.jpg)
+- ![Project ER Diagram](./ER_chap.jpg)
