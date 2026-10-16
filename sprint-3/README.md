@@ -18,9 +18,11 @@
     4. Guest Speaker
     5. Specific Message/Topic for the chapel
   - Form Submissions - After students submit the form to indicate their intent to participate, their submissions will be stored in a database though a POST API request to the server. SpiL admin will be able to see this data on their end through the GET requests.
+  - ![Architectural Diagram](./ADD.jpg)
  
 ### Software Design
 - Functional Decomposition- A module decomposition diagram for your system
+-    ![Project ER Diagram](./FDD.jpg)
 - ER diagram
   - ![Project ER Diagram](./ER_chap.jpg)
   - The heart and soul of our project lies in the event and submissions entities. We plan to use the events table to add all the chapel events occurring. Each chapel will have a series defined by the day of the week the event takes place. Each event will also include a location (on or off campus) and a speaker (who is talking at the chapel event), if any. 
@@ -33,13 +35,14 @@ Since students are submitting a chapel participation form, all of this will be v
 For each programming language that you will use in the implementation of your project, provide a link to a pre-existing coding style guideline that the members of your project will follow. Do not try to make up your own guidelines. Briefly state why you chose those guidelines and how you plan to enforce them.
 
 [Mozilla guidelines](https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Code_style_guide/JavaScript)
+
 [Javadocs](https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html)
 
 For this project, we are using two different guidelines. However, they will be used for particular elements. 
 
 Mozilla will be for basic commenting and code writing patterns. The document provides lots of clear examples of what to do and not to do. 
 
-Javadocs will be used for function and class descriptions. Some IDEs like VS Code use Javadocs to define the function in any language. Javadocs have also been used in our classes, so our team has experience writing them. We believe Javadocs are the best way to describe what a function or class does
+Javadocs will be used for function and class descriptions. Some IDEs like VS Code use Javadocs to define the function in any language. Javadocs have also been used in our classes so our team has experience writing them. We believe Javadocs are the best way to describe what a function or class does.
 
 We plan to enforce these rules by having a team member read the code and be sure the comments properly describe the function.
 
