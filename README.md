@@ -9,3 +9,4 @@ The problem is that those who attend chapel don’t always connect with the serv
 
 ### How is the repository organized? 
 The repository features different folders for the source code, testers, and documentation of decisions made, website planning, etc. 
+The current setup is has client side elements in /site while /api will host the admin portal and api routes
