@@ -47,6 +47,14 @@
     color: #FDB814;
 }
 
+.footer-image{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 25%;
+    height: 50px;
+}
+
 #body-container{
     position: relative;
     margin: auto;
@@ -57,13 +65,13 @@
     
     .body-head {
         padding: 6px;
-        border: 3px, solid #FDB814;
+        border: 3px, solid #f0d152;
         border-radius: 8 px;
         font-size: 3em;
-        background-color: #1F2A42;
+        background-color: #91A9B9;
         width: fit-content;
         margin-top: 10px;
-        color: #FDB814;
+        color: #f0d152;
     }
 
     table{
