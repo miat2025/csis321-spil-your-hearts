@@ -51,12 +51,13 @@
 
     .body-head {
         padding: 6px;
-        border: 3px, solid #ea8a04;
+        border: 3px, solid #FDB814;
         border-radius: 8 px;
         font-size: 3em;
-        background-color: #1dbebe;
+        background-color: #1F2A42;
         width: fit-content;
         margin-top: 10px;
+        color: #FDB814;
     }
 
     table{
