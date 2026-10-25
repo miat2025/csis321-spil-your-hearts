@@ -39,8 +39,8 @@
 }
 
 .nav-link-element:hover {
-    background-color: lightpink;
-    color: blueviolet;
+    background-color: #CFD8E2;
+    color: #FDB814;
 }
 
 .nav-link-element:visited {
@@ -74,10 +74,11 @@
             padding: 6px;
             font-size: 20px;
             text-align: left;
+            color: #1F2A42;
         }
         td{
             padding: 6px;
-            color: darkred;
+            color: #C4161C;
         }
     }
 }
