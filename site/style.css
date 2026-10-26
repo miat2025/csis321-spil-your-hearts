@@ -15,7 +15,7 @@
     }
 }
 
-/*#nav-footer {
+#nav-footer {
     position: relative;
     width: 100px;
     height: 100px;
@@ -25,7 +25,7 @@
         width: 100%;
         margin-top: 10px;
     }
-}*/
+}
 
 #nav-container {
     position: relative;
