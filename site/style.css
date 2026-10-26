@@ -15,6 +15,18 @@
     }
 }
 
+/*#nav-footer {
+    position: relative;
+    width: 100px;
+    height: 100px;
+
+    .footer-image{
+        position:relative;
+        width: 100%;
+        margin-top: 10px;
+    }
+}*/
+
 #nav-container {
     position: relative;
     width: inherit;
