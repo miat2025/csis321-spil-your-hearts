@@ -1,11 +1,14 @@
+-- SQL BY Levi for defining database schema 
+-- ER diagram under docs->diagrams
+
 BEGIN;
 
-CREATE TABLE chapel_titles (
+CREATE TABLE chapel_title (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title VARCHAR(255),
     weekday VARCHAR(15),
     chapel_time time with time zone,
-    credits INTEGER,
+    credits INTEGER
 );
 
 CREATE TABLE series (
@@ -24,18 +27,17 @@ CREATE TABLE location (
     city VARCHAR(255) NOT NULL,
     state VARCHAR(255),
     country VARCHAR(255) NOT NULL
-)
+);
 
 CREATE TABLE speakers (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_name VARCHAR(63)
+    first_name VARCHAR(63),
     last_name VARCHAR(63),
     email VARCHAR(255),
     bio TEXT,
     brief TEXT,
     isfgu BOOLEAN
-
-)
+);
 
 CREATE TABLE events (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -45,8 +47,8 @@ CREATE TABLE events (
     new_time BOOLEAN,
     event_time time with time zone,
     location_id BIGINT REFERENCES location(id),
-    chapel_title VARCHAR(255) REFERENCES chapel_title(id),
-    event_series BIGINT REFERENCES series(id)
+    chapel_title_id BIGINT REFERENCES chapel_title(id),
+    event_series_id BIGINT REFERENCES series(id)
 );
 
 CREATE TABLE event_speakers (
