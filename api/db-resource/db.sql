@@ -1,1 +1,1 @@
-CREATE DATABASE spil_db WITH spil_user;
+CREATE DATABASE spil_db WITH OWNER = 'spil_user';
