@@ -1,5 +1,5 @@
 #main-contain{
-    position: absolute;
+    position: relative;
     width: 100%;
 }
 
@@ -11,7 +11,6 @@
     .body-image{
         position:relative;
         width: 100%;
-        margin-top: 10px;
     }
 }
 
@@ -64,8 +63,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 25%;
-    height: 50px;
+    width: 50%;
+    height: 50%;
 }
 
 #body-container{
@@ -88,7 +87,7 @@
         }
         td{
             padding: 6px;
-            color: #C4161C;
+            color: #F3F5F8;
         }
     }
 }
