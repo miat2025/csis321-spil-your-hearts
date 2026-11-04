@@ -1,6 +1,4 @@
-!.gitignore
-api/node_modules
-api/package-lock.json
-api/package.json
+.gitignore
+api/node_modules/
 api/connect.txt
 api/.env

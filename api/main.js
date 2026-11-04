@@ -4,6 +4,7 @@
  */
 
 const db = require('./db.js')
+const chapel = require('./helpers/chapel.js')
 
 async function test(){
     // testing code
@@ -24,6 +25,14 @@ async function test(){
     
 }
 
+async function chapelResults(getRequest){
+    switch(getRequest){
+        case "next": return await chapel.getNextDates()
+        default: return [null]; // if things are wrong
+    }
+}
+
 module.exports = {
-    test
+    test,
+    chapelResults
 }
