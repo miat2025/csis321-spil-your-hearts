@@ -1,0 +1,1 @@
+CREATE DATABASE spil_db WITH OWNER = 'spil_user';
