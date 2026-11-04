@@ -75,6 +75,7 @@ CREATE TABLE event_speakers (
     event_id BIGINT NOT NULL,
     speaker_id BIGINT NOT NULL,
     PRIMARY KEY (event_id, speaker_id),
+    confirmed BOOLEAN,
 
     FOREIGN KEY (event_id) REFERENCES events(id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
