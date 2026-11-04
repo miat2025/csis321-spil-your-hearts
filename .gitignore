@@ -1,5 +1,5 @@
-!.gitignore
-api/node_modules
+.gitignore
+api/node_modules/
 api/package-lock.json
 api/package.json
 api/connect.txt
