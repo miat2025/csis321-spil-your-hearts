@@ -26,10 +26,6 @@ app.get("/chapels/:get", async (req, res) => {
     // get will be the command
     const {get} = req.params 
 
-    if(get === "getNext"){
-
-    }
-    else if(ge)
 
 
     res.status(200).json(["ok"])
