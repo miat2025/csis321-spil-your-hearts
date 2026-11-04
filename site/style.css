@@ -31,14 +31,14 @@
     width: inherit;
     display: flex;
     justify-content: space-between;
-    background-color: #1F2A42;
+    background-color: #CFD8E2;
 
     .nav-head {
         padding: 6px;
         font-size: 3em;
         width: fit-content;
         margin-top: 10px;
-        color: #f0d152;
+        color: #1F2A42;
     }
 }
 
@@ -50,7 +50,7 @@
 
 .nav-link-element{
     position: relative;
-    color: #1F2A42;
+    color: #CFD8E2;
     padding: 10px;
 }
 
@@ -73,7 +73,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #91A9B9;
+    background-color: #1F2A42;
 
     table{
         position: relative;
@@ -83,7 +83,7 @@
             padding: 6px;
             font-size: 20px;
             text-align: left;
-            color: #1F2A42;
+            color: #91A9B9;
         }
         td{
             padding: 6px;
