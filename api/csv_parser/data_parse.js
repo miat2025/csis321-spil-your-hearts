@@ -27,7 +27,6 @@ function readChapel(file)
         for (const row of rows) 
         {
             array_of_rows.push(row.replaceAll("\r","").split(','));
-            console.log(row.split(','))
         }
         return array_of_rows;
     } 
