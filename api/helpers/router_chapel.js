@@ -1,7 +1,11 @@
+/**
+ * Chapel router to organize all the routes
+ */
+
 import express from "express"
 import chapel from './chapel.js'
 
-
+// define the router to export
 const router = express.Router();
 
 // get the next 5 set of chapel dates

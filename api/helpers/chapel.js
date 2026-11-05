@@ -2,6 +2,8 @@
  * Chapel database fetching
  */
 
+import db from "../db.js"
+
 /**
  * Get the next set of 5 chapel dates
  * @returns Object of database data
@@ -34,5 +36,6 @@ async function getNextDatesExt(){
 }
 
 module.exports = {
-    getNextDates
+    getNextDates,
+    getNextDatesExt
 }

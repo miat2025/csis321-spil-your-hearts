@@ -4,7 +4,6 @@
  */
 
 const db = require('./db.js')
-const chapel = require('./helpers/chapel.js')
 
 async function test(){
     // testing code
