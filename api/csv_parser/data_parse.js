@@ -16,13 +16,13 @@ function readCSV(file){
 
 // TODO make a parser to return an array to be inserted into the database.
 function readChapel(file){
-return readCSV(file).slice(1).map(row => ({
-    date: row[0],
-    location: row[1],
-    series: row[2],
-    speaker: row[3],
-    topic: row[4]
-}));
+return readCSV(file).slice(1).map(row => ([
+    row[0],
+    row[1],
+    srow[2],
+    row[3],
+    row[4]
+]));
 
 
 }
