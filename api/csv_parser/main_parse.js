@@ -25,8 +25,13 @@ function main() {
 
     // get data from csv
     let data_array = csv_parse.default(file_name);
+    if(!data_array) {
+        // if something went wrong exit
+        // data_array already prints error
+        process.exit(1);
+    }
 
-    
+
     // generate our insert
 
     // insert to database
