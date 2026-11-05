@@ -1,34 +1,50 @@
+// parser module for returing a 2d array of csv values
+
 const fs = require("fs");
 
 // TODO make a csv reader that returns the array of each line
-function readCSV(file){
-    try {
+function readCSV(file)
+{
+    try 
+    {
         const data = fs.readFileSync(file, 'utf8');
-        return data
-        .trim()
-        .split('\n')
-        .map(line => line.split(','));
-    } catch (err) {
+        return data.trim().split('\n')
+
+    } catch (err) 
+    {
         console.error('Error reading CSV file:', err);
-        return [[-1]];
+        return null;
     }
 }
 
 // TODO make a parser to return an array to be inserted into the database.
-function readChapel(file){
-return readCSV(file).slice(1).map(row => ([
-    row[0],
-    row[1],
-    srow[2],
-    row[3],
-    row[4]
-]));
-
-
+function readChapel(file) 
+{
+    const rows = readCSV(file);
+    try 
+    {
+        let array_of_rows = [];
+        for (const row of rows) 
+        {
+            array_of_rows.push(row.replaceAll("\r","").split(','));
+            console.log(row.split(','))
+        }
+        return array_of_rows;
+    } 
+    catch (err) 
+    {
+        console.error('Error parsing CSV', err);
+        return null;
+    }
 }
 
-function main(){
-    console.log(readChapel("api/csv_parser/chapel.csv"));
-}
+module.exports = readChapel;
 
-main()
+// removed main for turning module into an export
+
+// function main()
+// {
+//     console.log(readChapel("events.csv"));
+// }
+
+// main()
