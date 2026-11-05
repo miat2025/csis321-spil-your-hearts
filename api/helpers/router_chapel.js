@@ -3,7 +3,7 @@
  */
 
 import express from "express"
-import chapel from './chapel.js'
+import * as chapel from './chapel.js'
 
 // define the router to export
 const router = express.Router();

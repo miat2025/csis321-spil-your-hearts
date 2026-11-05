@@ -2,7 +2,7 @@
  * Chapel database fetching
  */
 
-import db from "../db.js"
+const db = require("../db.js");
 
 /**
  * Get the next set of 5 chapel dates
