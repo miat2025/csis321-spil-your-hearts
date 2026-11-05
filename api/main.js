@@ -9,7 +9,6 @@ const chapel = require('./helpers/chapel.js')
 async function test(){
     // testing code
     try{
-        console.log(process.env.DB_HOST, process.env.DB_PASSWORD)
         let t = await db.pgGetPool()
         let sql = `
             SELECT * FROM vehicle_positions LIMIT 10
@@ -25,14 +24,8 @@ async function test(){
     
 }
 
-async function chapelResults(getRequest){
-    switch(getRequest){
-        case "next": return await chapel.getNextDates()
-        default: return [null]; // if things are wrong
-    }
-}
+
 
 module.exports = {
-    test,
-    chapelResults
+    test
 }
