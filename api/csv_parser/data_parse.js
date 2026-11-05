@@ -28,7 +28,7 @@ return readCSV(file).slice(1).map(row => ({
 }
 
 function main(){
-    console.log("hello")
+    console.log(readChapel("api/csv_parser/chapel.csv"));
 }
 
 main()
