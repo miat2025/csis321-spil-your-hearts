@@ -3,6 +3,8 @@
  * 
  * format:
  * <table_name> <file.csv>
+ * Ex:
+ * node csv_parser/main_parse.js people csv_parser/people.csv
  */
 const db = require('../db.js')
 const csv_parse = require("./../csv_parser/data_parse.js")

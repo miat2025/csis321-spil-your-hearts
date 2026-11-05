@@ -39,18 +39,18 @@ CREATE TABLE location (
 CREATE INDEX idx_addresses ON location (country, state, city, address);
 CREATE INDEX idx_addresses_us ON location (zip, state, city, address);
 
-CREATE TABLE speakers (
+CREATE TABLE people (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     first_name VARCHAR(63) NOT NULL,
     last_name VARCHAR(63) NOT NULL,
-    email VARCHAR(255),
-    bio TEXT,
-    brief TEXT,
+    email VARCHAR(255) DEFAULT NULL,
+    bio TEXT DEFAULT NULL,
+    brief TEXT DEFAULT NULL,
     isgfu BOOLEAN NOT NULL DEFAULT FALSE
 );
 -- Create an index to locate speakers by last name
-CREATE INDEX idx_speaker_lName ON speakers(last_name);
-CREATE INDEX idx_speaker_fName ON speakers(first_name);
+CREATE INDEX idx_people_lName ON speakers(last_name);
+CREATE INDEX idx_people_fName ON speakers(first_name);
 -- Create an index to better find gfu speakers
 CREATE INDEX idx_isgfu ON speakers(isgfu);
 
@@ -73,14 +73,26 @@ CREATE TABLE events (
 
 CREATE TABLE event_speakers (
     event_id BIGINT NOT NULL,
-    speaker_id BIGINT NOT NULL,
+    person_id BIGINT NOT NULL,
     PRIMARY KEY (event_id, speaker_id),
     confirmed BOOLEAN,
 
     FOREIGN KEY (event_id) REFERENCES events(id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (speaker_id) REFERENCES speakers(id) 
+    FOREIGN KEY (person_id) REFERENCES people(id) 
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE INDEX idx_eSpeaker_spId ON event_speakers(speaker_id);
+CREATE TABLE event_hosts (
+    event_id BIGINT NOT NULL,
+    person_id BIGINT NOT NULL,
+    PRIMARY KEY (event_id, person_id)
+
+    FOREIGN KEY (event_id) REFERENCES events(id) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (person_id) REFERENCES people(id) 
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE INDEX idx_eSpeaker_pId ON event_speakers(person_id);
+CREATE INDEX idx_eHost_pId ON event_hosts(person_id);
