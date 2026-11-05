@@ -13,7 +13,7 @@ function readCSV(file)
     } catch (err) 
     {
         console.error('Error reading CSV file:', err);
-        return [[-1]];
+        return null;
     }
 }
 
@@ -34,7 +34,7 @@ function readChapel(file)
     catch (err) 
     {
         console.error('Error parsing CSV', err);
-        return [[-1]];
+        return null;
     }
 }
 
