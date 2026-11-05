@@ -23,7 +23,12 @@ app.get("/test", async (req, res)=> {
 
 // get chapel related info
 app.get("/chapels/:get", async (req, res) => {
-    res.status(200).json(["ok"])
+    // get will be the command
+    const {get} = req.params 
+    const o = await m.chapelResults(get)
+    console.log(o)
+
+    res.status(200).json(o)
 });
 app.get("/speakers/:get", async (req, res) => {
     res.status(200).json(["ok"])
