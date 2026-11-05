@@ -21,6 +21,10 @@ app.get("/test", async (req, res)=> {
     res.json(o);
 });
 
+const ROUTER_DEST = './router'
+const chapelRouter = require(ROUTER_DEST + "/router_chapel").default
+app.use("/chapels", chapelRouter)
+
 // get chapel related info
 app.get("/chapels/:get", async (req, res) => {
     // get will be the command
@@ -30,6 +34,7 @@ app.get("/chapels/:get", async (req, res) => {
 
     res.status(200).json(o)
 });
+
 app.get("/speakers/:get", async (req, res) => {
     res.status(200).json(["ok"])
 })
