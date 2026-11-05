@@ -38,7 +38,7 @@ function readChapel(file)
     }
 }
 
-export default readChapel;
+module.exports = readChapel;
 
 // removed main for turning module into an export
 
