@@ -144,7 +144,11 @@
 
 
 
-
+#body-calendar {
+  display: flex;
+  justify-content: center;
+  background-color: #FFFCFF;
+}
 
 button {
   width: 75px;
@@ -156,9 +160,19 @@ button {
   border-radius: 5px;
   color: #1F2A42;
 }
+#month-head {
+  padding: 10px;
+  color: #1F2A42;
+  font-size: 26px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+#month-head button {
+  background-color:#F3F5F8;
+}
 
-
-#container {
+#month-container {
   width: 770px;
 }
 #week-view {
