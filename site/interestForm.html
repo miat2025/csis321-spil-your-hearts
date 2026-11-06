@@ -26,6 +26,12 @@
                 </div>
             </div>
             <div id = "body-container">
+                <div id = "nav-links" class = "nav-element">
+                    <a href = "index.html" class = "nav-link-element">Home</a>
+                    <a href = "#" class = "nav-link-element">Interest Form</a>
+                    <a href = "mainCalendar.html" class = "nav-link-element">Main Calendar</a>
+                    <a href = "aboutUs.html" class = "nav-link-element">About Us</a>
+                </div>
                 <h1>Interest Form</h1>
                 <form>
                     <label for="fname">First Name:</label><br>
@@ -34,13 +40,22 @@
                     <input type="text" id="lname" name="lname"><br>
                     <label for="email">Email:</label><br>
                     <input type="text" id="email" name="email"><br>
+                    <label for="chapel">Chapel Date:</label><br>
+                    <select id="chapel" name="chapel">
+                        <option value="date">Be With</option>
+                        <option value="date">Be Renewed</option>
+                    </select><br>
+                    <label for="what">What are you wanting to share?</label><br>
+                    <textarea name="what" rows="8" cols="50"></textarea><br>
+                    <label for="why">Why are you wanting to share this?</label><br>
+                    <textarea name="why" rows="8" cols="50"></textarea><br>
+                    <label for="how">How does it apply to the chapel you selected?</label><br>
+                    <textarea name="how" rows="8" cols="50"></textarea><br>
+                    <label for="consent">By typing yes, you understand your submission will be reviewed:</label><br>
+                    <input type="text" id="consent" name="consent"><br>
+                    <input type="submit" value="Submit">
                 </form>
             </div>
-        </div>
-                    <div id = "foot-container"></div>
-                <div id = "nav-footer" class = "nav-element">
-                    <img class = "footer-image" src = "GFU image.png" alt = "GFU_logo">
-                </div>
         </div>
     </body>
 </html>
