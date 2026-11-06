@@ -8,7 +8,6 @@ const db = require('./db.js')
 async function test(){
     // testing code
     try{
-        console.log(process.env.DB_HOST, process.env.DB_PASSWORD)
         let t = await db.pgGetPool()
         let sql = `
             SELECT * FROM vehicle_positions LIMIT 10
@@ -23,6 +22,8 @@ async function test(){
     }
     
 }
+
+
 
 module.exports = {
     test
