@@ -71,7 +71,7 @@
     POSITION: relative;
     display: flex;
     align-items: flex-end;
-    justify-content: center
+    justify-content: center;
 }
 
 .nav-link-element{
