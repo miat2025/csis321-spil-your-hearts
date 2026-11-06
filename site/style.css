@@ -144,48 +144,47 @@
 
 
 
-#body-calendar {
+body1 {
   display: flex;
+  margin-top: 50px;
   justify-content: center;
   background-color: #FFFCFF;
 }
-
 button {
   width: 75px;
   cursor: pointer;
-  box-shadow: 0px 0px 2px #1F2A42;
+  box-shadow: 0px 0px 2px gray;
   border: none;
   outline: none;
   padding: 5px;
   border-radius: 5px;
-  color: #1F2A42;
+  color: white;
 }
+
 #month-head {
   padding: 10px;
-  color: #1F2A42;
+  color: #d36c6c;
   font-size: 26px;
   font-family: sans-serif;
   display: flex;
   justify-content: space-between;
 }
 #month-head button {
-  background-color:#F3F5F8;
+  background-color:#92a1d1;
 }
-
 #month-container {
   width: 770px;
 }
-#week-view {
+#weekdays {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  color: #1F2A42;
+  color: #247BA0;
 }
-#week-view div {
+#weekdays div {
   width: 100px;
   padding: 10px;
 }
-#calendar-view {
+#calendar {
   width: 100%;
   margin: auto;
   display: flex;
@@ -199,7 +198,7 @@ button {
   box-sizing: border-box;
   background-color: white;
   margin: 5px;
-  box-shadow: 0px 0px 3px #1F2A42;
+  box-shadow: 0px 0px 3px #CBD4C2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -269,22 +268,4 @@ button {
   height: 100vh;
   position: absolute;
   background-color: rgba(0,0,0,0.8);
-}
-
-#month-container{
-    position: relative;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #7998AC;
-}
-
-#calendar-container{
-    position: relative;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #7998AC;
 }
