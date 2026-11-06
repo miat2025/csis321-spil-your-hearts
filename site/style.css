@@ -144,16 +144,17 @@ button {
 #container {
   width: 770px;
 }
-#weekdays {
+#week-view {
   width: 100%;
   display: flex;
+  justify-content: space-evenly;
   color: #247BA0;
 }
-#weekdays div {
+#week-view div {
   width: 100px;
   padding: 10px;
 }
-#calendar {
+#calendar-view {
   width: 100%;
   margin: auto;
   display: flex;
