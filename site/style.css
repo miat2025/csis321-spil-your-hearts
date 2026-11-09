@@ -49,11 +49,39 @@
     }
 }
 
+#title-container {
+    position: relative;
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    margin: auto;
+}
+
+#bio-name-container{
+  text-align: center;
+  left: 0;
+  width: inherit;
+  display: flex;
+  font-style: italic;
+  font-size: 1.2em;
+  margin: 20px;
+}
+
+#bio-container {
+    text-align: left;
+    left: 0;
+    width: inherit;
+    display: flex;
+    margin: 20px;
+}
+
 #nav-links {
     font-size: 1.5em;
     POSITION: relative;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
 }
 
 .nav-link-element{
@@ -65,6 +93,15 @@
 .nav-link-element:hover {
     background-color: #CFD8E2;
     color: #FDB814;
+}
+
+.bio-image{
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: 10px;
+    align-items: center;
+    width: 80%;
 }
 
 .footer-image{
@@ -80,8 +117,8 @@
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: #7998AC;
+    align-items: center;
 
     table{
         position: relative;
@@ -127,12 +164,16 @@
 
 
 
-
-
+body1 {
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  background-color: #FFFCFF;
+}
 button {
   width: 75px;
   cursor: pointer;
-  box-shadow: 0px 0px 2px #1F2A42;
+  box-shadow: 0px 0px 2px gray;
   border: none;
   outline: none;
   padding: 5px;
@@ -140,8 +181,18 @@ button {
   color: white;
 }
 
-
-#container {
+#month-head {
+  padding: 10px;
+  color: #d36c6c;
+  font-size: 26px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+#month-head button {
+  background-color:#92a1d1;
+}
+#month-container {
   width: 770px;
 }
 #weekdays {
@@ -167,7 +218,7 @@ button {
   box-sizing: border-box;
   background-color: white;
   margin: 5px;
-  box-shadow: 0px 0px 3px #1F2A42;
+  box-shadow: 0px 0px 3px #CBD4C2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -237,22 +288,4 @@ button {
   height: 100vh;
   position: absolute;
   background-color: rgba(0,0,0,0.8);
-}
-
-#month-container{
-    position: relative;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #7998AC;
-}
-
-#calendar-container{
-    position: relative;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #7998AC;
 }
