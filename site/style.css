@@ -59,7 +59,7 @@
 }
 
 #bio-name-container{
-  text-align: left;
+  text-align: center;
   left: 0;
   width: inherit;
   display: flex;
@@ -93,6 +93,15 @@
 .nav-link-element:hover {
     background-color: #CFD8E2;
     color: #FDB814;
+}
+
+.bio-image{
+    padding: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: 10px;
+    align-items: center;
+    width: 80%;
 }
 
 .footer-image{
