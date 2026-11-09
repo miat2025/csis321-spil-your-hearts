@@ -58,6 +58,16 @@
     margin: auto;
 }
 
+#bio-name-container{
+  text-align: left;
+  left: 0;
+  width: inherit;
+  display: flex;
+  font-style: italic;
+  font-size: 1.2em;
+  margin: 20px;
+}
+
 #bio-container {
     text-align: left;
     left: 0;
