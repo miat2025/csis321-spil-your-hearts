@@ -197,7 +197,7 @@ button {
 #weekdays {
   width: 100%;
   display: flex;
-  color: #247BA0;
+  color: #1F2A42;
 }
 #weekdays div {
   width: 100px;
@@ -215,7 +215,7 @@ button {
   height: 100px;
   cursor: pointer;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #CFD8E2;
   margin: 5px;
   box-shadow: 0px 0px 3px #CBD4C2;
   display: flex;
@@ -227,13 +227,13 @@ button {
 }
 
 .day + #currentDay {
-  background-color:#e8f4fa;
+  background-color:#91A9B9;
 }
 .event {
   font-size: 10px;
   padding: 3px;
-  background-color: #58bae4;
-  color: white;
+  background-color: #F3F5F8;
+  color: #1F2A42;
   border-radius: 5px;
   max-height: 55px;
   overflow: hidden;
