@@ -65,6 +65,7 @@
   font-style: italic;
   font-size: 1.2em;
   margin: 20px;
+  color: #F3F5F8;
 }
 
 #bio-container {
@@ -72,7 +73,6 @@
     left: 0;
     width: inherit;
     display: flex;
-    margin: 20px;
 }
 
 #nav-links {
@@ -165,9 +165,8 @@
 
 body1 {
   display: flex;
-  margin-top: 50px;
   justify-content: center;
-  background-color: #FFFCFF;
+  background-color: #7998AC;
 }
 button {
   width: 75px;
@@ -177,19 +176,20 @@ button {
   outline: none;
   padding: 5px;
   border-radius: 5px;
-  color: white;
+  color: #1F2A42;
 }
 
 #month-head {
   padding: 10px;
-  color: #d36c6c;
+  color: #1F2A42
+;
   font-size: 26px;
   font-family: sans-serif;
   display: flex;
   justify-content: space-between;
 }
 #month-head button {
-  background-color:#92a1d1;
+  background-color:#CFD8E2;
 }
 #month-container {
   width: 770px;
@@ -197,7 +197,7 @@ button {
 #weekdays {
   width: 100%;
   display: flex;
-  color: #247BA0;
+  color: #1F2A42;
 }
 #weekdays div {
   width: 100px;
@@ -208,6 +208,7 @@ button {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 25px;
 }
 .day {
   width: 100px;
@@ -215,7 +216,7 @@ button {
   height: 100px;
   cursor: pointer;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #CFD8E2;
   margin: 5px;
   box-shadow: 0px 0px 3px #CBD4C2;
   display: flex;
@@ -227,13 +228,13 @@ button {
 }
 
 .day + #currentDay {
-  background-color:#e8f4fa;
+  background-color:#91A9B9;
 }
 .event {
   font-size: 10px;
   padding: 3px;
-  background-color: #58bae4;
-  color: white;
+  background-color: #F3F5F8;
+  color: #1F2A42;
   border-radius: 5px;
   max-height: 55px;
   overflow: hidden;
@@ -248,7 +249,7 @@ button {
   z-index: 20;
   padding: 25px;
   background-color: #e8f4fa;
-  box-shadow: 0px 0px 3px black;
+  box-shadow: 0px 0px 3px #1F2A42;
   border-radius: 5px;
   width: 350px;
   top: 100px;
@@ -288,3 +289,6 @@ button {
   position: absolute;
   background-color: rgba(0,0,0,0.8);
 }
+
+
+
