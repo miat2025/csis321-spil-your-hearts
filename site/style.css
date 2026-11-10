@@ -208,6 +208,7 @@ button {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 25px;
 }
 .day {
   width: 100px;
