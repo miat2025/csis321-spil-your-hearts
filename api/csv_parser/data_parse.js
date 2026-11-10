@@ -1,23 +1,23 @@
 const fs = require("fs");
 
-// TODO make a csv reader that returns the array of each line
+// A csv reader that returns the array of each line
 function readCSV(file)
 {
     try 
     {
         const data = fs.readFileSync(file, 'utf8');
-        return data
-        .trim()
-        .split('\n')
+        data = data.trim().split('\n');
+        output = data;
 
     } catch (err) 
     {
         console.error('Error reading CSV file:', err);
-        return [[-1]];
+        output = [[-1]];
     }
+    return output;
 }
 
-// TODO make a parser to return an array to be inserted into the database.
+// A parser to return an array to be inserted into the database.
 function readChapel(file) 
 {
     const rows = readCSV(file);
@@ -29,13 +29,14 @@ function readChapel(file)
             array_of_rows.push(row.replaceAll("\r","").split(','));
             console.log(row.split(','))
         }
-        return array_of_rows;
+        output = array_of_rows;
     } 
     catch (err) 
     {
     console.error('Error parsing CSV', err);
-    return [[-1]];
+    output = [[-1]];
     }
+    return output;
 }
 
 function main()
