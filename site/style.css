@@ -65,6 +65,7 @@
   font-style: italic;
   font-size: 1.2em;
   margin: 20px;
+  color: #F3F5F8;
 }
 
 #bio-container {
@@ -72,7 +73,6 @@
     left: 0;
     width: inherit;
     display: flex;
-    margin: 20px;
 }
 
 #nav-links {
@@ -288,3 +288,6 @@ button {
   position: absolute;
   background-color: rgba(0,0,0,0.8);
 }
+
+
+
