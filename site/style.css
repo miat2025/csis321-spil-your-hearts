@@ -165,9 +165,8 @@
 
 body1 {
   display: flex;
-  margin-top: 50px;
   justify-content: center;
-  background-color: #FFFCFF;
+  background-color: #7998AC;
 }
 button {
   width: 75px;
@@ -177,19 +176,20 @@ button {
   outline: none;
   padding: 5px;
   border-radius: 5px;
-  color: white;
+  color: #1F2A42;
 }
 
 #month-head {
   padding: 10px;
-  color: #d36c6c;
+  color: #1F2A42
+;
   font-size: 26px;
   font-family: sans-serif;
   display: flex;
   justify-content: space-between;
 }
 #month-head button {
-  background-color:#92a1d1;
+  background-color:#CFD8E2;
 }
 #month-container {
   width: 770px;
@@ -248,7 +248,7 @@ button {
   z-index: 20;
   padding: 25px;
   background-color: #e8f4fa;
-  box-shadow: 0px 0px 3px black;
+  box-shadow: 0px 0px 3px #1F2A42;
   border-radius: 5px;
   width: 350px;
   top: 100px;
