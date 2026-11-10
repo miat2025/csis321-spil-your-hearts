@@ -66,13 +66,26 @@
   font-size: 1.2em;
   margin: 20px;
   color: #F3F5F8;
+  justify-content: flex-start;
 }
 
 #bio-container {
+    text-align: right;
+    left: 0;
+    width: inherit;
+    display: flex;
+}
+
+#bio-text{
     text-align: left;
     left: 0;
     width: inherit;
     display: flex;
+    font-size: 1.2em;
+    margin: 20px;
+    color: #F3F5F8;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 #nav-links {
@@ -94,13 +107,15 @@
     color: #FDB814;
 }
 
+
 .bio-image{
     padding: 10px;
     display: block;
-    margin-left: auto;
     margin-right: 10px;
     align-items: center;
-    width: 80%;
+    width: auto;
+    float: left;
+    border-radius: 10px;
 }
 
 .footer-image{
@@ -208,7 +223,7 @@ button {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 .day {
   width: 100px;
