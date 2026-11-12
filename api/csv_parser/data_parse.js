@@ -1,3 +1,5 @@
+// parser module for returing a 2d array of csv values
+
 const fs = require("fs");
 
 // A csv reader that returns the array of each line
@@ -6,13 +8,12 @@ function readCSV(file)
     try 
     {
         const data = fs.readFileSync(file, 'utf8');
-        data = data.trim().split('\n');
-        output = data;
+        return data.trim().split('\n')
 
     } catch (err) 
     {
         console.error('Error reading CSV file:', err);
-        output = [[-1]];
+        return null;
     }
     return output;
 }
@@ -33,15 +34,19 @@ function readChapel(file)
     } 
     catch (err) 
     {
-    console.error('Error parsing CSV', err);
-    output = [[-1]];
+        console.error('Error parsing CSV', err);
+        return null;
     }
     return output;
 }
 
-function main()
-{
-    console.log(readChapel("events.csv"));
-}
+module.exports = readChapel;
 
-main()
+// removed main for turning module into an export
+
+// function main()
+// {
+//     console.log(readChapel("events.csv"));
+// }
+
+// main()
