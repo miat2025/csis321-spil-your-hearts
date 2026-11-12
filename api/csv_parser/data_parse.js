@@ -23,13 +23,13 @@ function readChapel(file)
     const rows = readCSV(file);
     try 
     {
-        let array_of_rows = [];
-        for (const row of rows) 
+        let row_of_columns = [];
+        for (const row of columns) 
         {
-            array_of_rows.push(row.replaceAll("\r","").split(','));
+            row_of_columns.push(row.replaceAll("\r","").split(','));
             console.log(row.split(','))
         }
-        output = array_of_rows;
+        output = row_of_columns;
     } 
     catch (err) 
     {
