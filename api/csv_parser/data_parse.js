@@ -5,10 +5,11 @@ const fs = require("fs");
 // A csv reader that returns the array of each line
 function readCSV(file)
 {
+    let output = null;
     try 
     {
         const data = fs.readFileSync(file, 'utf8');
-        return data.trim().split('\n')
+        output = data.trim().split('\n')
 
     } catch (err) 
     {
@@ -22,13 +23,13 @@ function readCSV(file)
 function readChapel(file) 
 {
     const rows = readCSV(file);
+    let output = null;
     try 
     {
         let row_of_rows = [];
         for (const row of rows) 
         {
             row_of_rows.push(row.replaceAll("\r","").split(','));
-            console.log(row.split(','))
         }
         output = row_of_rows;
     } 
