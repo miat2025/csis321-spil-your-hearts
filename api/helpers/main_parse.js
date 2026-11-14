@@ -7,7 +7,7 @@
  * node csv_parser/main_parse.js people csv_parser/people.csv
  */
 const db = require('../db.js')
-const csv_parse = require("./../csv_parser/data_parse.js")
+const csv_parse = require("./data_parse.js")
 const fs = require('fs')
 
 // read command line args
