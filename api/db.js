@@ -18,10 +18,15 @@ const pgPool = new Pool({
 	connectionTimeoutMillis: 6000
 })
 
-async function pgGetPool() {
-    return await pgPool.connect();
+function pgGetPool() {
+    return pgPool
+}
+
+async function pgGetConnection() {
+	return pgPool.connect();
 }
 
 module.exports = {
-    pgGetPool
+    pgGetPool,
+	pgGetConnection
 }
