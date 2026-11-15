@@ -33,7 +33,7 @@ function placeholderFunction(array)
 
     // create the final result
     // join and add parentheses
-    let result = "(" + stringify.join(',') + ")"
+    let result = stringify.join(',')
 
     return result;
 }
