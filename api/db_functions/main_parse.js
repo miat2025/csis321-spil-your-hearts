@@ -13,7 +13,7 @@ const fs = require('fs')
 
 // read command line args
 
-function main() {
+async function main() {
     // check if argument count is correct
     console.log(process.argv)
     if (process.argv.length != 4) {
@@ -46,8 +46,13 @@ function main() {
         INSERT into ${table_name} (${getColumns(header)})
         VALUES ${placeholder}
     `;   
-    console.log(insert_query)
-    // insert to database
+    
+    // insert to database 
+    // connect to db
+    let o = await db.pgGetPool().query(insert_query);
+    
+    // send query
+   // await oS;
 }
 
 /**
