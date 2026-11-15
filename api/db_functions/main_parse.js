@@ -40,8 +40,28 @@ function main() {
     const placeholder = csv_placeholder(data_array)
     console.log(placeholder)
     // generate our insert
+let = `
+INSERT into ${table_name} (${getColumns(data_array)})
 
+`
     // insert to database
+}
+
+/**
+ * get the columns for a string
+ * @param {Array} data csv array data
+ * @returns string of head
+ */
+function getColumns(data){
+    let row = data[0]
+
+    let result = []
+
+    for (const col in row){
+        result.push(col)
+    }
+
+    return result.join(',')
 }
 
 main();
