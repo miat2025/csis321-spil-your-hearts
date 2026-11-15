@@ -37,7 +37,15 @@ function main() {
     let table_name = process.argv[2];
     let file_name = process.argv[3];
 
-    let uploader = new DataUpload(table_name, file_name)
+    // get the object to perform job
+    const jobClass =  DataUpload[table_name];
+
+    if (!jobClass){
+        console.error(`${table_name} is not a valid table`)
+    }
+
+    // initialize uploader
+    const uploader =  new jobClass(table_name, file_name);
     
     uploader.main_upload();
 
@@ -67,20 +75,6 @@ function main() {
     // insert to database
 }
 
-/**
- * get the columns for a string
- * @param {Array} row csv array data
- * @returns string of head
- */
-function getColumns(row){
-    let result = []
 
-    for (const col of row){
-        console.log(col)
-        result.push(col)
-    }
-
-    return result.join(',')
-}
 
 main();
