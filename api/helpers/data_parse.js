@@ -47,10 +47,12 @@ function readChapel(file)
             // if element if an empty string, it is null
             col = (col_lower === 'true')? true : col
             col = (col_lower === 'false')? false : col
-
             
-            col = (col == '')? null : col
-            final.push(col) // push results
+            // if empty string, turn null
+            col = (col === '')? null : col
+
+            // push results
+            final.push(col)
         }
 
         array_of_rows.push(final);
