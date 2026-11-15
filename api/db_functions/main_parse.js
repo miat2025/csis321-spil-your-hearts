@@ -11,6 +11,14 @@ const csv_parse = require("../helpers/data_parse.js")
 const csv_placeholder = require("../helpers/placeholder.js")
 const fs = require('fs')
 
+// conflict items
+let conflict_people = `
+        ON CONFLICT (first_name, last_name)
+        DO UPDATE SET
+            first_name = EXCLUDED.first_name
+            last_name = EXCLUDED.last_name
+            email = EXCLUDED.email`
+
 // read command line args
 
 function main() {
@@ -45,6 +53,7 @@ function main() {
     let insert_query = `
         INSERT into ${table_name} (${getColumns(header)})
         VALUES ${placeholder}
+        ${conflict_people}
     `;   
     console.log(insert_query)
     // insert to database

@@ -46,13 +46,13 @@ CREATE TABLE people (
     email VARCHAR(255) DEFAULT NULL,
     bio TEXT DEFAULT NULL,
     brief TEXT DEFAULT NULL,
-    isgfu BOOLEAN NOT NULL DEFAULT FALSE
+    is_gfu BOOLEAN NOT NULL DEFAULT FALSE
 );
 -- Create an index to locate speakers by last name
 CREATE INDEX idx_people_lName ON people(last_name);
 CREATE INDEX idx_people_fName ON people(first_name);
 -- Create an index to better find gfu speakers
-CREATE INDEX idx_isgfu ON people(isgfu);
+CREATE INDEX idx_isgfu ON people(is_gfu);
 
 CREATE TABLE events (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
