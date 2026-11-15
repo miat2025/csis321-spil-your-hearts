@@ -11,6 +11,9 @@ const csv_parse = require("../helpers/data_parse.js")
 const csv_placeholder = require("../helpers/placeholder.js")
 const fs = require('fs')
 
+const MAX_ARGV_LENGTH = 4;
+
+
 // conflict items
 let conflict_people = `
         ON CONFLICT (first_name, last_name)
@@ -24,7 +27,7 @@ let conflict_people = `
 function main() {
     // check if argument count is correct
     console.log(process.argv)
-    if (process.argv.length != 4) {
+    if (process.argv.length != MAX_ARGV_LENGTH) {
         console.error('Invalid number of elements!')
         process.exit(1)
     }
@@ -57,20 +60,6 @@ function main() {
     `;   
     console.log(insert_query)
     // insert to database
-}
-
-async function parse_data(data_array){
-    // verify correct minimum header/columns
-
-    // get the headers to string
-
-    // get the placeholders
-
-    // build final query string
-
-    // clean the insertable data
-
-    // return string query, final insertable data
 }
 
 /**

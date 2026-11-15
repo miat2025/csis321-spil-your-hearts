@@ -1,13 +1,10 @@
 // TODO Make a class to upload data to the database
-// Make subclassed for the specific tables
-
 
 const db = require('../db.js')
 const csv_parse = require("../helpers/data_parse.js")
 const csv_placeholder = require("../helpers/placeholder.js")
 
 class DataUpload {
-    static MAX_ARGV_LENGTH = 4;
 
     // set with all suported tables
     static TABLES = new Set([
@@ -16,29 +13,26 @@ class DataUpload {
         //"event", -- for later
         "series",
         "chapel_title"
-    ])
+    ]);
 
     // constructor
     constructor (table, file_location) {
-        
+       this.table_name = table ;
+       this.file_location = file_location;
     }
 
-    // argument validatity checker,
-    // more checks to come later when needed
-    validateCLIArgs(cli_args) {
-        // will not implement an exit 
-        // incase non-cli func to prevent live
-        // api from ending if mistake occures
+    parse_data(data_array){
+        // verify correct minimum header/columns
 
-        // check length
+        // get the headers to string
 
-        // return result
-        return null
-    }
+        // get the placeholders
 
-    // function to run main
-    cli_main_upload() {
-        ;
+        // build final query string
+
+        // clean the insertable data
+
+        // return string query, final insertable data
     }
 
     // 
