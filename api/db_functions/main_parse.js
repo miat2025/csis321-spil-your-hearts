@@ -34,30 +34,32 @@ function main() {
         process.exit(1);
     }
 
-    //console.log(data_array)
+    // get the first row of data
+    // this results in the original updated without first row
+    let header = data_array.shift();
 
     // get place holder string
-    const placeholder = csv_placeholder(data_array)
-    console.log(placeholder)
+    const placeholder = csv_placeholder(data_array);
+    
     // generate our insert
-let = `
-INSERT into ${table_name} (${getColumns(data_array)})
-
-`
+    let insert_query = `
+        INSERT into ${table_name} (${getColumns(header)})
+        VALUES ${placeholder}
+    `;   
+    console.log(insert_query)
     // insert to database
 }
 
 /**
  * get the columns for a string
- * @param {Array} data csv array data
+ * @param {Array} row csv array data
  * @returns string of head
  */
-function getColumns(data){
-    let row = data[0]
-
+function getColumns(row){
     let result = []
 
-    for (const col in row){
+    for (const col of row){
+        console.log(col)
         result.push(col)
     }
 
