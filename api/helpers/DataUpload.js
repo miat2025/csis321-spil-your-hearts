@@ -26,20 +26,25 @@ class DataUpload {
     }
 
     parse_data(data){
+        // get the first row of data
+        // this results in the original updated without first row
+        let header = data.shift();
+
         // verify correct minimum header/columns
 
         // get the headers to string
+        const headerStr = DataUpload.getColumns(header)
 
         // get the placeholders
+        const placeholder = csv_placeholder(data);
 
         // build final query string
+        let insert_query = this.createQuery(headerStr, placeholder) 
 
         // clean the insertable data
 
         // return string query, final insertable data
-        const insert_query = null;
-        const insert_data = null;
-        return {insert_query, insert_data}
+        return {insert_query, insert_data: data}
     }
 
     /**
@@ -57,8 +62,48 @@ class DataUpload {
 
         const { insert_query,insert_data} = this.parse_data(data_array);
 
-        console.log(insert_data)
+        console.log(insert_query, insert_data)
+    }
+
+    headerVerification(header) {
+        return true
+    }
+
+    /**
+     * Basic template for query insert
+     * @param {String} headerStr The headers provided from data as a string
+     * @param {String} placeholder string of psql placeholders. Ex ($1, $2)
+     * @returns Query for db insert
+     */
+    createQuery(headerStr, placeholder) {
+        return  `
+            INSERT into ${this.table_name} (${headerStr})
+            VALUES ${placeholder}
+        `;  
+    }
+
+    /**
+     * get the columns for a string
+     * @param {Array} row csv array data
+     * @returns string of headers
+     */
+    static getColumns(row){
+        let result = []
+
+        for (const col of row){
+            result.push(col)
+        }
+
+        return result.join(',')
     }
 }
 
-module.exports = DataUpload;
+const table_to_class = {
+    "people": DataUpload,
+    "location": DataUpload,
+    "event": DataUpload,
+    "series": DataUpload,
+    "chapel_title": DataUpload
+}
+
+module.exports = table_to_class;
