@@ -34,11 +34,11 @@ function main() {
         process.exit(1);
     }
 
-    console.log(data_array)
+    //console.log(data_array)
 
     // get place holder string
     const placeholder = csv_placeholder(data_array)
-
+    console.log(placeholder)
     // generate our insert
 
     // insert to database
