@@ -40,8 +40,10 @@ function main() {
     // get the object to perform job
     const jobClass = DataUpload[table_name];
 
+    // if table was not found
     if (!jobClass){
-        console.error(`${table_name} is not a valid table`)
+        console.error(`${table_name} is not a valid table. Exiting program`)
+        process.exit(1)
     }
 
     // initialize uploader
