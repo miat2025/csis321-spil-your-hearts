@@ -2,7 +2,11 @@
 
 const fs = require("fs");
 
-// read the csv file and return a row of data
+/**
+ * read the csv file and return a row of data
+ * @param {string} file name of the file
+ * @returns array of strings
+ */
 function readCSV(file)
 {
     try 
@@ -12,17 +16,23 @@ function readCSV(file)
         return data.split('\n')
 
     } 
-    catch (err) // return error
+    catch (err) // return error and null
     {
         console.error('Error reading CSV file:', err);
         return null;
     }
 }
 
-// A parser to return an array to be inserted into the database.
+/**
+ * A parser to return an array to be inserted into the database.
+ * @param {string} file filename
+ * @returns array of rows and column
+ */
 function readChapel(file) 
 {
+    // read the file
     const rows = readCSV(file);
+
     // if there was an error or returned null
     if(!rows) {
         return null

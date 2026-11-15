@@ -8,6 +8,7 @@
  */
 const db = require('../db.js')
 const csv_parse = require("../helpers/data_parse.js")
+const csv_placeholder = require("../helpers/placeholder.js")
 const fs = require('fs')
 
 // read command line args
@@ -25,7 +26,7 @@ function main() {
     let file_name = process.argv[3];
 
     // get data from csv
-    let data_array = csv_parse(file_name);
+    const data_array = csv_parse(file_name);
     if(!data_array) {
         // if something went wrong exit
         // csv_parse already prints error
@@ -35,7 +36,9 @@ function main() {
 
     console.log(data_array)
 
-    
+    // get place holder string
+    const placeholder = csv_placeholder(data_array)
+
     // generate our insert
 
     // insert to database
