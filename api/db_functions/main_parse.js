@@ -11,9 +11,17 @@ const csv_parse = require("../helpers/data_parse.js")
 const csv_placeholder = require("../helpers/placeholder.js")
 const fs = require('fs')
 
+// conflict items
+let conflict_people = `
+        ON CONFLICT (first_name, last_name)
+        DO UPDATE SET
+            first_name = EXCLUDED.first_name
+            last_name = EXCLUDED.last_name
+            email = EXCLUDED.email`
+
 // read command line args
 
-async function main() {
+function main() {
     // check if argument count is correct
     console.log(process.argv)
     if (process.argv.length != 4) {
@@ -45,14 +53,10 @@ async function main() {
     let insert_query = `
         INSERT into ${table_name} (${getColumns(header)})
         VALUES ${placeholder}
+        ${conflict_people}
     `;   
-    
-    // insert to database 
-    // connect to db
-    let o = await db.pgGetPool().query(insert_query);
-    
-    // send query
-   // await oS;
+    console.log(insert_query)
+    // insert to database
 }
 
 /**
