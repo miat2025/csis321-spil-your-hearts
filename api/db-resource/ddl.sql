@@ -49,10 +49,10 @@ CREATE TABLE people (
     isgfu BOOLEAN NOT NULL DEFAULT FALSE
 );
 -- Create an index to locate speakers by last name
-CREATE INDEX idx_people_lName ON speakers(last_name);
-CREATE INDEX idx_people_fName ON speakers(first_name);
+CREATE INDEX idx_people_lName ON people(last_name);
+CREATE INDEX idx_people_fName ON people(first_name);
 -- Create an index to better find gfu speakers
-CREATE INDEX idx_isgfu ON speakers(isgfu);
+CREATE INDEX idx_isgfu ON people(isgfu);
 
 CREATE TABLE events (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -74,7 +74,7 @@ CREATE TABLE events (
 CREATE TABLE event_speakers (
     event_id BIGINT NOT NULL,
     person_id BIGINT NOT NULL,
-    PRIMARY KEY (event_id, speaker_id),
+    PRIMARY KEY (event_id, person_id),
     confirmed BOOLEAN,
 
     FOREIGN KEY (event_id) REFERENCES events(id) 
@@ -86,7 +86,7 @@ CREATE TABLE event_speakers (
 CREATE TABLE event_hosts (
     event_id BIGINT NOT NULL,
     person_id BIGINT NOT NULL,
-    PRIMARY KEY (event_id, person_id)
+    PRIMARY KEY (event_id, person_id),
 
     FOREIGN KEY (event_id) REFERENCES events(id) 
         ON DELETE CASCADE ON UPDATE CASCADE,
