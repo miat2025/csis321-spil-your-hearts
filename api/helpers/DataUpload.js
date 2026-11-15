@@ -15,13 +15,17 @@ class DataUpload {
         "chapel_title"
     ]);
 
-    // constructor
-    constructor (table, file_location) {
-       this.table_name = table ;
-       this.file_location = file_location;
+    /**
+     * Class constructor
+     * @param {String} table name of db table
+     * @param {String} file file to be uploaded
+     */
+    constructor (table, file) {
+       this.table_name = table;
+       this.file = file;
     }
 
-    parse_data(data_array){
+    parse_data(data){
         // verify correct minimum header/columns
 
         // get the headers to string
@@ -33,10 +37,28 @@ class DataUpload {
         // clean the insertable data
 
         // return string query, final insertable data
+        const insert_query = null;
+        const insert_data = null;
+        return {insert_query, insert_data}
     }
 
-    // 
+    /**
+     * Heart and soul of what is to be uploaded.
+     * Will throw errors when something is wrong.
+     */
     main_upload() {
-        ;
+        // get data from csv
+        const data_array = csv_parse(this.file);
+        if(!data_array) {
+            // if something went wrong exit
+            // csv_parse already prints error
+            throw new Error("something went wrong in parsing");
+        }
+
+        const { insert_query,insert_data} = this.parse_data(data_array);
+
+        console.log(insert_data)
     }
 }
+
+module.exports = DataUpload;

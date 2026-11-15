@@ -7,8 +7,9 @@
  * node db_functions/main_parse.js people csv/people.csv
  */
 const db = require('../db.js')
-const csv_parse = require("../helpers/data_parse.js")
-const csv_placeholder = require("../helpers/placeholder.js")
+//const csv_parse = require("../helpers/data_parse.js")
+//const csv_placeholder = require("../helpers/placeholder.js")
+const DataUpload = require("../helpers/DataUpload.js")
 const fs = require('fs')
 
 const MAX_ARGV_LENGTH = 4;
@@ -36,7 +37,11 @@ function main() {
     let table_name = process.argv[2];
     let file_name = process.argv[3];
 
-    // get data from csv
+    let uploader = new DataUpload(table_name, file_name)
+    
+    uploader.main_upload();
+
+    return;
     const data_array = csv_parse(file_name);
     if(!data_array) {
         // if something went wrong exit
