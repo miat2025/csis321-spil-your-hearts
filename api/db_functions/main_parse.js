@@ -59,6 +59,20 @@ function main() {
     // insert to database
 }
 
+async function parse_data(data_array){
+    // verify correct minimum header/columns
+
+    // get the headers to string
+
+    // get the placeholders
+
+    // build final query string
+
+    // clean the insertable data
+
+    // return string query, final insertable data
+}
+
 /**
  * get the columns for a string
  * @param {Array} row csv array data

@@ -1,5 +1,5 @@
 -- SQL BY Levi for defining database schema 
--- ER diagram under docs->diagrams
+-- ER diagram under docs -> diagrams
 
 BEGIN;
 
