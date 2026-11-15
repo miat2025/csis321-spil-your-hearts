@@ -4,10 +4,10 @@
  * format:
  * <table_name> <file.csv>
  * Ex:
- * node csv_parser/main_parse.js people csv_parser/people.csv
+ * node db_functions/main_parse.js people csv/people.csv
  */
 const db = require('../db.js')
-const csv_parse = require("./data_parse.js")
+const csv_parse = require("../helpers/data_parse.js")
 const fs = require('fs')
 
 // read command line args
@@ -29,6 +29,7 @@ function main() {
     if(!data_array) {
         // if something went wrong exit
         // csv_parse already prints error
+        console.log("something went wrong")
         process.exit(1);
     }
 

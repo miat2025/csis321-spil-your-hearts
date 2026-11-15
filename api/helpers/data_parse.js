@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 
-// A csv reader that returns the array of each line
+// TODO make a csv reader that returns the array of each line
 function readCSV(file)
 {
     try 
@@ -13,31 +13,28 @@ function readCSV(file)
     } catch (err) 
     {
         console.error('Error reading CSV file:', err);
-        output = null;
+        return null;
     }
-    return output;
 }
 
-// A parser to return an array to be inserted into the database.
+// TODO make a parser to return an array to be inserted into the database.
 function readChapel(file) 
 {
     const rows = readCSV(file);
     try 
     {
-        let row_of_columns = [];
-        for (const row of columns) 
+        let array_of_rows = [];
+        for (const row of rows) 
         {
-            row_of_columns.push(row.replaceAll("\r","").split(','));
-            console.log(row.split(','))
+            array_of_rows.push(row.replaceAll("\r","").split(','));
         }
-        output = row_of_columns;
+        return array_of_rows;
     } 
     catch (err) 
     {
         console.error('Error parsing CSV', err);
-        output = null;
+        return null;
     }
-    return output;
 }
 
 module.exports = readChapel;
