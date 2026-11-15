@@ -34,6 +34,8 @@ function main() {
     }
 
     console.log(data_array)
+
+    
     // generate our insert
 
     // insert to database

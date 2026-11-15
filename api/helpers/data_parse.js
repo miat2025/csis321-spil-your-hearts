@@ -38,12 +38,3 @@ function readChapel(file)
 }
 
 module.exports = readChapel;
-
-// removed main for turning module into an export
-
-// function main()
-// {
-//     console.log(readChapel("events.csv"));
-// }
-
-// main()
