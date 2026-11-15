@@ -1,10 +1,14 @@
 // TODO Make a class to upload data to the database
+// Term headers are also column names
 
 const db = require('../db.js')
 const csv_parse = require("../helpers/data_parse.js")
 const csv_placeholder = require("../helpers/placeholder.js")
 
 class DataUpload {
+    static valid_min_cols = new Set([]);
+    static on_conflict_cols = new Set([]);
+    static updatable_cols = new Set([])
 
     // set with all suported tables
     static TABLES = new Set([
@@ -51,7 +55,7 @@ class DataUpload {
      * Heart and soul of what is to be uploaded.
      * Will throw errors when something is wrong.
      */
-    main_upload() {
+    async main_upload() {
         // get data from csv
         const data_array = csv_parse(this.file);
         if(!data_array) {
@@ -60,9 +64,13 @@ class DataUpload {
             throw new Error("something went wrong in parsing");
         }
 
-        const { insert_query,insert_data} = this.parse_data(data_array);
+        // get the data and query
+        const { insert_query, insert_data } = this.parse_data(data_array);
 
-        console.log(insert_query, insert_data)
+        console.log(insert_query, insert_data);
+        
+        // add to table
+        await db.pgGetPool().query(insert_query, insert_data);
     }
 
     headerVerification(header) {
@@ -79,7 +87,21 @@ class DataUpload {
         return  `
             INSERT into ${this.table_name} (${headerStr})
             VALUES ${placeholder}
+            ${generateOnConflict()}
         `;  
+    }
+
+    generateOnConflict(header) {
+        // get the intersection of known conflicts
+
+        // 
+
+        //let DataUpload.on_conflict_cols.join(',')
+
+        return `
+        ON CONFLICT (${conflict_seg})
+        DO UPDATE SET
+        `
     }
 
     /**
@@ -98,8 +120,39 @@ class DataUpload {
     }
 }
 
+class DataUploadPeople extends DataUpload {
+    static valid_min_cols = new Set(["first_name", "last_name"]);
+    static on_conflict_cols = new Set(["first_name", "last_name"]);
+    static updatable_cols = new Set(["is_gfu", "email"])
+
+    constructor (table, file) {
+        super(table, file);
+    }
+
+    /**
+     * Template for people query insert
+     * @param {String} headerStr The headers provided from data as a string
+     * @param {String} placeholder string of psql placeholders. Ex ($1, $2)
+     * @returns Query for db insert
+     */
+    createQuery(headerStr, placeholder) {
+        return  `
+            INSERT into ${this.table_name} (${headerStr})
+            VALUES ${placeholder}
+            ON CONFLICT (${conflict_seg})
+                DO UPDATE SET
+         `;  
+
+        // ON CONFLICT (first_name, last_name)
+        // DO UPDATE SET
+        //     first_name = EXCLUDED.first_name
+        //     last_name = EXCLUDED.last_name
+        //     email = EXCLUDED.email`
+    }
+}
+
 const table_to_class = {
-    "people": DataUpload,
+    "people": DataUploadPeople,
     "location": DataUpload,
     "event": DataUpload,
     "series": DataUpload,
