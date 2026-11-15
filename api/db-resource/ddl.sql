@@ -7,12 +7,13 @@ CREATE TABLE chapel_title (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     weekday VARCHAR(15),
-    chapel_time TIME,
+    time_start TIME,
+    time_end TIME,
     credits INTEGER NOT NULL DEFAULT 0
 );
 -- SELECT by chapel credits
 CREATE INDEX idx_credits ON chapel_title(credits);
-CREATE INDEX idx_chapel_time ON chapel_title(chapel_time);
+CREATE INDEX idx_chapel_time ON chapel_title(time_start);
 
 CREATE TABLE series (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -60,7 +61,8 @@ CREATE TABLE events (
     description TEXT,
     date DATE NOT NULL,
     -- for these we are to use coalesce
-    new_time TIME DEFAULT NULL, -- if not null, there are is a new time
+    new_time_start TIME DEFAULT NULL, -- if not null, there are is a new time end
+    new_time_end TIME DEFAULT NULL, -- if not null, there are is a new end time
     new_credits INTEGER DEFAULT NULL, -- if not null, there is a different credit count
 
     location_id BIGINT REFERENCES location(id) 
@@ -70,6 +72,8 @@ CREATE TABLE events (
     event_series_id BIGINT REFERENCES series(id)
         ON DELETE SET NULL ON UPDATE CASCADE
 );
+
+CREATE INDEX idx_event_time ON events(new_time_start); -- when selecting for times
 
 CREATE TABLE event_speakers (
     event_id BIGINT NOT NULL,
