@@ -38,7 +38,7 @@ function main() {
     let file_name = process.argv[3];
 
     // get the object to perform job
-    const jobClass =  DataUpload[table_name];
+    const jobClass = DataUpload[table_name];
 
     if (!jobClass){
         console.error(`${table_name} is not a valid table`)
@@ -46,33 +46,14 @@ function main() {
 
     // initialize uploader
     const uploader =  new jobClass(table_name, file_name);
-    
-    uploader.main_upload();
-
-    return;
-    const data_array = csv_parse(file_name);
-    if(!data_array) {
-        // if something went wrong exit
-        // csv_parse already prints error
-        console.log("something went wrong")
-        process.exit(1);
+    try {
+        uploader.main_upload();
+    }
+    catch (e){
+        console.error(e)
     }
 
-    // get the first row of data
-    // this results in the original updated without first row
-    let header = data_array.shift();
-
-    // get place holder string
-    const placeholder = csv_placeholder(data_array);
-    
-    // generate our insert
-    let insert_query = `
-        INSERT into ${table_name} (${getColumns(header)})
-        VALUES ${placeholder}
-        ${conflict_people}
-    `;   
-    console.log(insert_query)
-    // insert to database
+    process.exit(0);
 }
 
 
