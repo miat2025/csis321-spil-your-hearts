@@ -156,9 +156,19 @@ class DataUploadPeople extends DataUpload {
     }
 }
 
+class DataUploadLocation extends DataUpload {
+    constructor (table, file) {
+        super(table, file);
+
+        this.valid_min_cols = new Set(["code", "name", "address", "city", "state", "country"]);
+        this.on_conflict_cols = new Set(["code"]);
+        this.updatable_cols = new Set(["name", "address", "city", "state", "country", "state", "zip"])
+    }
+}
+
 const table_to_class = {
     "people": DataUploadPeople,
-    "location": DataUpload,
+    "location": DataUploadLocation,
     "event": DataUpload,
     "series": DataUpload,
     "chapel_title": DataUpload
