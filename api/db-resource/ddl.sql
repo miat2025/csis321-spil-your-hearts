@@ -50,8 +50,8 @@ CREATE TABLE people (
     is_gfu BOOLEAN NOT NULL DEFAULT FALSE
 );
 -- Create an index to locate speakers by last name
-CREATE INDEX idx_people_lName ON people(last_name);
 CREATE INDEX idx_people_fName ON people(first_name);
+CREATE UNIQUE INDEX U_idx_people ON people(last_name, first_name);
 -- Create an index to better find gfu speakers
 CREATE INDEX idx_isgfu ON people(is_gfu);
 
