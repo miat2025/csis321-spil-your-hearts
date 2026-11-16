@@ -24,17 +24,21 @@ class DataUpload {
         // get the first row of data
         // this results in the original updated without first row
         let header = data.shift();
+
         // verify correct minimum header/columns
+        console.log("hi")
+
+        if (! this.headerVerification(header)) {
+            throw new Error("invalid columns from file")
+        }
 
         // get the headers to string
 
         // get the placeholders
         const placeholder = csv_placeholder(data);
 
-        console.log('hi1')
         // build final query string
         let insert_query = this.createQuery(header, placeholder) 
-        console.log('hi')
 
         // clean the insertable data
 
@@ -64,7 +68,16 @@ class DataUpload {
     }
 
     headerVerification(header) {
-        return true
+        let inputHeaders = new Set(header);
+        
+        // ensure required columns are in input header
+        for(const reqired_cols of [...this.valid_min_cols]){
+            //if the column does not has minimum required, error
+            if (!inputHeaders.has(reqired_cols)){
+                return false
+            }
+        }
+        return true;
     }
 
     /**
@@ -75,7 +88,6 @@ class DataUpload {
      */
     createQuery(header, placeholder) {
         const headerStr = DataUpload.getColumns(header)
-
         let r = `
             INSERT into ${this.table_name} (${headerStr})
             VALUES ${placeholder}
@@ -84,21 +96,31 @@ class DataUpload {
         return r;
     }
 
+    
     generateOnConflict(header) {
-        // get the intersection of known conflicts
-        let inHeaders = new Set(header);
+        // keep track of headers to insert
+        let inputHeaders = new Set(header);
 
-        let intersection_headers = inHeaders.intersection(this.on_conflict_cols)
-        console.log(intersection_headers)
-        // 
+         // get the intersection of columns we have that need updating
+        let cols_to_update = inputHeaders.intersection(this.updatable_cols)
+        console.log(typeof cols_to_update)
+        // if there are no colums for conflicts, return nothing
+        if(!cols_to_update.size){
+            return ''
+        }
+        // keep track of updating columns
+        let updating = []
 
-        //let DataUpload.on_conflict_cols.join(',')
+        // add string to be updated
+        for (const col of [cols_to_update]) {
+
+        }
         
+        // create template
+        let r = `ON CONFLICT (${[...this.on_conflict_cols].join(',')}) DO UPDATE SET 
+        `
 
-        let r = `
-            ON CONFLICT (${[...intersection_headers].join(',')})
-            DO UPDATE SET
-            `
+        
         return r;
     }
 
