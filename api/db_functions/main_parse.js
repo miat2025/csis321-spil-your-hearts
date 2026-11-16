@@ -27,7 +27,7 @@ let conflict_people = `
 
 function main() {
     // check if argument count is correct
-    console.log(process.argv)
+    //console.log(process.argv)
     if (process.argv.length != MAX_ARGV_LENGTH) {
         console.error('Invalid number of elements!')
         process.exit(1)

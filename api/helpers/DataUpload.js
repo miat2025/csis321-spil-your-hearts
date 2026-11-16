@@ -26,8 +26,6 @@ class DataUpload {
         let header = data.shift();
 
         // verify correct minimum header/columns
-        console.log("hi")
-
         if (! this.headerVerification(header)) {
             throw new Error("invalid columns from file")
         }
@@ -63,13 +61,18 @@ class DataUpload {
 
         console.log(insert_query, insert_data);
         
-        // add to table
-        //await db.pgGetPool().query(insert_query, insert_data);
+        // add to database
+        console.log("hi")
+        try {
+            await db.pgGetPool().query(insert_query, insert_data);
+        } catch (e) {
+            throw new Error("Database insert error" + e)
+        }
     }
 
     headerVerification(header) {
         let inputHeaders = new Set(header);
-        
+
         // ensure required columns are in input header
         for(const reqired_cols of [...this.valid_min_cols]){
             //if the column does not has minimum required, error
@@ -103,24 +106,23 @@ class DataUpload {
 
          // get the intersection of columns we have that need updating
         let cols_to_update = inputHeaders.intersection(this.updatable_cols)
-        console.log(typeof cols_to_update)
+
         // if there are no colums for conflicts, return nothing
         if(!cols_to_update.size){
             return ''
         }
         // keep track of updating columns
-        let updating = []
+        let updating_cols = []
 
         // add string to be updated
-        for (const col of [cols_to_update]) {
-
+        for (const col of [...cols_to_update]) {
+            updating_cols.push(`${col} = EXCLUDED.${col}`)
         }
         
         // create template
         let r = `ON CONFLICT (${[...this.on_conflict_cols].join(',')}) DO UPDATE SET 
+            ${updating_cols.join(",")}
         `
-
-        
         return r;
     }
 
