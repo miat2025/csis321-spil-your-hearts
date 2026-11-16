@@ -1,5 +1,6 @@
 // TODO Make a class to upload data to the database
-// Term headers are also column names
+// Term 'headers' are also "column names"
+// TODO document functions!!
 
 const db = require('../db.js')
 const csv_parse = require("../helpers/data_parse.js")
@@ -140,7 +141,17 @@ class DataUploadPeople extends DataUpload {
         super(table, file);
 
         this.valid_min_cols = new Set(["first_name", "last_name"]);
-        this.on_conflict_cols = new Set(["first_name", "last_name"]);
+        this.on_conflict_cols = new Set(["last_name", "first_name"]);
+        this.updatable_cols = new Set(["is_gfu", "email"])
+    }
+}
+
+class DataUploadPeople extends DataUpload {
+    constructor (table, file) {
+        super(table, file);
+
+        this.valid_min_cols = new Set(["first_name", "last_name"]);
+        this.on_conflict_cols = new Set(["last_name", "first_name"]);
         this.updatable_cols = new Set(["is_gfu", "email"])
     }
 }
