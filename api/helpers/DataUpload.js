@@ -30,8 +30,6 @@ class DataUpload {
             throw new Error("invalid columns from file")
         }
 
-        // get the headers to string
-
         // get the placeholders
         const placeholder = csv_placeholder(data);
 
@@ -41,7 +39,7 @@ class DataUpload {
         // clean the insertable data
 
         // return string query, final insertable data
-        return {insert_query, insert_data: data}
+        return {insert_query, insert_data: data.flat()}
     }
 
     /**
@@ -62,12 +60,7 @@ class DataUpload {
         console.log(insert_query, insert_data);
         
         // add to database
-        console.log("hi")
-        try {
-            await db.pgGetPool().query(insert_query, insert_data);
-        } catch (e) {
-            throw new Error("Database insert error" + e)
-        }
+        await db.pgGetPool().query(insert_query, insert_data.flat());
     }
 
     headerVerification(header) {
@@ -143,8 +136,6 @@ class DataUpload {
 }
 
 class DataUploadPeople extends DataUpload {
-    
-
     constructor (table, file) {
         super(table, file);
 
@@ -152,27 +143,6 @@ class DataUploadPeople extends DataUpload {
         this.on_conflict_cols = new Set(["first_name", "last_name"]);
         this.updatable_cols = new Set(["is_gfu", "email"])
     }
-
-    // /**
-    //  * Template for people query insert
-    //  * @param {String} headerStr The headers provided from data as a string
-    //  * @param {String} placeholder string of psql placeholders. Ex ($1, $2)
-    //  * @returns Query for db insert
-    //  */
-    // createQuery(headerStr, placeholder) {
-    //     return  `
-    //         INSERT into ${this.table_name} (${headerStr})
-    //         VALUES ${placeholder}
-    //         ON CONFLICT (${conflict_seg})
-    //             DO UPDATE SET
-    //      `;  
-
-    //     // ON CONFLICT (first_name, last_name)
-    //     // DO UPDATE SET
-    //     //     first_name = EXCLUDED.first_name
-    //     //     last_name = EXCLUDED.last_name
-    //     //     email = EXCLUDED.email`
-    // }
 }
 
 const table_to_class = {
