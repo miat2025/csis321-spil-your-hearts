@@ -6,6 +6,9 @@ const db = require('../db.js')
 const csv_parse = require("../helpers/data_parse.js")
 const csv_placeholder = require("../helpers/placeholder.js")
 
+/**
+ * Class for uploading data onto the database
+ */
 class DataUpload {
     /**
      * Class constructor
@@ -21,6 +24,11 @@ class DataUpload {
         this.file = file;
     }
 
+    /**
+     * parse the data before db use
+     * @param {Array} data Array of csv data
+     * @returns an object of a query and the final array of data to upsert
+     */
     parse_data(data){
         // get the first row of data
         // this results in the original updated without first row
@@ -64,6 +72,11 @@ class DataUpload {
         await db.pgGetPool().query(insert_query, insert_data.flat());
     }
 
+    /**
+     * Verify the headers are valid for the selected table
+     * @param {Array} header Array of column (header) data
+     * @returns boolean if data is valid
+     */
     headerVerification(header) {
         let inputHeaders = new Set(header);
 
@@ -133,16 +146,6 @@ class DataUpload {
         }
 
         return result.join(',')
-    }
-}
-
-class DataUploadPeople extends DataUpload {
-    constructor (table, file) {
-        super(table, file);
-
-        this.valid_min_cols = new Set(["first_name", "last_name"]);
-        this.on_conflict_cols = new Set(["last_name", "first_name"]);
-        this.updatable_cols = new Set(["is_gfu", "email"])
     }
 }
 
