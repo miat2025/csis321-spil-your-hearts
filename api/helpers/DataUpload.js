@@ -36,19 +36,20 @@ class DataUpload {
 
         // verify correct minimum header/columns
         if (! this.headerVerification(header)) {
-            throw new Error("invalid columns from file")
+            throw new Error("invalid columns from file");
         }
 
         // get the placeholders
         const placeholder = csv_placeholder(data);
 
         // build final query string
-        let insert_query = this.createQuery(header, placeholder) 
+        let insert_query = this.createQuery(header, placeholder);
 
         // clean the insertable data
+        data = this.cleanData(data);
 
         // return string query, final insertable data
-        return {insert_query, insert_data: data.flat()}
+        return {insert_query, insert_data: data.flat()};
     }
 
     /**
@@ -84,10 +85,19 @@ class DataUpload {
         for(const reqired_cols of [...this.valid_min_cols]){
             //if the column does not has minimum required, error
             if (!inputHeaders.has(reqired_cols)){
-                return false
+                return false;
             }
         }
         return true;
+    }
+
+    /**
+     * Clean the array. Will replace certain data from database if required
+     * @param {Array} array array of 2d data to clean
+     * @returns cleaned array
+     */
+    cleanData(array) {
+        return array;
     }
 
     /**
