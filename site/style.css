@@ -33,6 +33,7 @@
 }
 
 #nav-container {
+    text-align: center;
     position: relative;
     width: inherit;
     display: flex;
@@ -86,6 +87,7 @@
     color: #F3F5F8;
     justify-content: flex-start;
     flex-direction: column;
+    padding-bottom: 58px;
 }
 
 #nav-links {
@@ -305,5 +307,12 @@ button {
   background-color: rgba(0,0,0,0.8);
 }
 
-
+#about-body-container{
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: flex-start;
+}
 
