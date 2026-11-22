@@ -29,7 +29,7 @@ class DataUpload {
      * @param {Array} data Array of csv data
      * @returns an object of a query and the final array of data to upsert
      */
-    parse_data(data){
+    async parse_data(data){
         // get the first row of data
         // this results in the original updated without first row
         let header = data.shift();
@@ -46,7 +46,8 @@ class DataUpload {
         let insert_query = this.createQuery(header, placeholder);
 
         // clean the insertable data
-        data = this.cleanData(data);
+        data = await this.cleanData(data);
+
 
         // return string query, final insertable data
         return {insert_query, insert_data: data.flat()};
@@ -65,12 +66,10 @@ class DataUpload {
             throw new Error("something went wrong in parsing");
         }
         // get the data and query
-        const { insert_query, insert_data } = this.parse_data(data_array);
-
-        console.log(insert_query, insert_data);
-        
+        const { insert_query, insert_data } = await this.parse_data(data_array);
+        console.log(insert_query)
         // add to database
-        await db.pgGetPool().query(insert_query, insert_data.flat());
+        //await db.pgGetPool().query(insert_query, insert_data.flat());
     }
 
     /**
@@ -96,7 +95,7 @@ class DataUpload {
      * @param {Array} array array of 2d data to clean
      * @returns cleaned array
      */
-    cleanData(array) {
+    async cleanData(array) {
         return array;
     }
 
@@ -116,7 +115,11 @@ class DataUpload {
         return r;
     }
 
-    
+    /**
+     * Create an on conflict query of there are any
+     * @param {array} header array of column data
+     * @returns string of on conflict info or empty string.
+     */
     generateOnConflict(header) {
         // keep track of headers to insert
         let inputHeaders = new Set(header);
@@ -141,6 +144,10 @@ class DataUpload {
             ${updating_cols.join(",")}
         `
         return r;
+    }
+
+    static createSearchMap() {
+
     }
 
     /**
@@ -179,10 +186,45 @@ class DataUploadLocation extends DataUpload {
     }
 }
 
+class DataUploadEvent extends DataUpload {
+    // constructor (table, file) {
+    //     super(table, file);
+
+    //     this.valid_min_cols = new Set(["code", "name", "address", "city", "state", "country"]);
+    //     this.on_conflict_cols = new Set(["code"]);
+    //     this.updatable_cols = new Set(["name", "address", "city", "state", "country", "state", "zip"])
+    // }
+
+     /**
+     * Clean the array. Will replace certain data from database if required
+     * @param {Array} array array of 2d data to clean
+     * @returns cleaned array
+     */
+    async cleanData(array) {
+        // Idea is to replace name to an ID
+
+        // select the data that we need to interpret what the data means
+        let psql = await db.pgGetConnection();
+
+        let chapel_titles = (await psql.query("SELECT id, title FROM chapel_title;")).rows; // we are needing the rows data only
+        let locations = (await psql.query("SELECT id, code FROM location;")).rows;
+        let series = (await psql.query("SELECT id, name FROM series;")).rows
+
+        await psql.end()
+
+        // convert the data to a map we can quickly select where data does
+        console.log(chapel_titles, locations, series)
+        // look through array for what is needed to be replaced for an id
+
+
+        return array;
+    }
+}
+
 const table_to_class = {
     "people": DataUploadPeople,
     "location": DataUploadLocation,
-    "event": DataUpload,
+    "events": DataUploadEvent,
     "series": DataUpload,
     "chapel_title": DataUpload
 }
