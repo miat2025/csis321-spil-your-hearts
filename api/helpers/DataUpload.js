@@ -215,14 +215,14 @@ class DataUploadEvent extends DataUpload {
         let psql = await db.pgGetConnection();
 
         let chapel_titles = (await psql.query("SELECT id, title FROM chapel_title;")).rows; // we are needing the rows data only
-        let locations = (await psql.query("SELECT id, code FROM location;")).rows;
+        let locations = (await psql.query("SELECT id, name FROM location;")).rows;
         let series = (await psql.query("SELECT id, name FROM series;")).rows
 
         await psql.end();
 
         // convert the data to a map we can quickly select where data does
         let ct_map = DataUpload.valueToId(chapel_titles, "title");
-        let loc_map = DataUpload.valueToId(locations, "code");
+        let loc_map = DataUpload.valueToId(locations, "name");
         let series_map = DataUpload.valueToId(series, "name")
 
         // look through array for what is needed to be replaced for an id
@@ -238,8 +238,16 @@ class DataUploadEvent extends DataUpload {
 
         // 2. perform replacement for each column
         for (const row of array) {
+            // nullish coalescing operator my beloved -levi
+
             // replace chapel title
-            if (HAS_CT) row[ct_idx] = ct_map[row[ct_idx]];
+            if (HAS_CT) row[ct_idx] = ct_map[row[ct_idx]] ?? row[ct_idx];
+
+            // replace locations
+            if (HAS_LOC) row[loc_idx] = loc_map[row[loc_idx]] ?? row[loc_idx];
+
+            // replace series
+            if (HAS_SERIES) row[series_idx] = series_map[row[series_idx]] ?? row[series_idx];
         }
 
         return array;
