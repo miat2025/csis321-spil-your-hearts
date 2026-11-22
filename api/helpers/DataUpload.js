@@ -39,11 +39,14 @@ class DataUpload {
             throw new Error("invalid columns from file");
         }
 
+        // clean hedaer if needed;
+        let headerCld = this.headerClean(header);
+
         // get the placeholders
         const placeholder = csv_placeholder(data);
 
         // build final query string
-        let insert_query = this.createQuery(header, placeholder);
+        let insert_query = this.createQuery(headerCld, placeholder);
 
         // clean the insertable data
         data = await this.cleanData(header, data);
@@ -69,7 +72,7 @@ class DataUpload {
         const { insert_query, insert_data } = await this.parse_data(data_array);
 
         // add to database
-        //await db.pgGetPool().query(insert_query, insert_data.flat());
+        await db.pgGetPool().query(insert_query, insert_data.flat());
     }
 
     /**
@@ -158,6 +161,10 @@ class DataUpload {
         return map;
     }
 
+    headerClean(header) {
+        return header;
+    }
+
     /**
      * get the columns for a string
      * @param {Array} row csv array data
@@ -195,13 +202,6 @@ class DataUploadLocation extends DataUpload {
 }
 
 class DataUploadEvent extends DataUpload {
-    // constructor (table, file) {
-    //     super(table, file);
-
-    //     this.valid_min_cols = new Set(["code", "name", "address", "city", "state", "country"]);
-    //     this.on_conflict_cols = new Set(["code"]);
-    //     this.updatable_cols = new Set(["name", "address", "city", "state", "country", "state", "zip"])
-    // }
 
      /**
      * Clean the array. Will replace certain data from database if required
@@ -251,6 +251,15 @@ class DataUploadEvent extends DataUpload {
         }
 
         return array;
+    }
+
+    /**
+     * Replace column headers for their database/er counterpart
+     * @param {array} header column data
+     * @returns array with replaced column names for db
+     */
+    headerClean(header) {
+        return header
     }
 }
 
