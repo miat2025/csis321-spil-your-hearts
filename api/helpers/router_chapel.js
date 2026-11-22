@@ -16,6 +16,7 @@ router.get("/next", async (req, res) => {
         res.status(200).json(nextDates);
     } catch(error) {
         // if something is wrong, return proper statsus code
+        console.log(error)
         res.status(500).json(["Internal Error"])
     }
 })
