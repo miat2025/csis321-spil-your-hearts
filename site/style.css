@@ -307,5 +307,12 @@ button {
   background-color: rgba(0,0,0,0.8);
 }
 
-
+#about-body-container{
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: flex-start;
+}
 

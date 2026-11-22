@@ -38,9 +38,10 @@ async function main() {
     const uploader =  new jobClass(table_name, file_name);
     try {
         await uploader.main_upload();
+        console.log("Data has successfully uploaded!");
     }
     catch (e){
-        console.log(e)
+        console.log(e);
     }
 
     process.exit(0);
