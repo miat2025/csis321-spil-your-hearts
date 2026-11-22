@@ -10,27 +10,20 @@ const db = require("../db.js");
  */
 async function getNextDates(){
     // create query
-    let query = `
-        SELECT * FROM events WHERE date >= CURRENT_DATE LIMIT 5;
-    `
+    let query = `SELECT * FROM events WHERE date >= CURRENT_DATE ORDER BY date ASC LIMIT 5;`
+
+    // select
     let result = (await db.pgGetPool().query(query)).rows
     return result
 }
 
 async function getNextDatesExt(){
-    const sample = [
-        {date: "10/26/2026", time:"12:00 PM", credit_type:"Elective Credit", name:"Theology Club"},
-        {date: "11/4/2026", time:"11:00 AM", credit_type:"Elective Credit", name:"Quaker Worship"},
-        {date: "11/4/2026", time:"5:00 PM", credit_type:"Elective Credit", name:"Honor's Evening Prayer"},
-        {date: "11/4/2026", time:"7:30 PM", credit_type:"Chapel Credit", name:"Be With"},
-        {date: "11/5/2026", time:"10:50 AM", credit_type:"Chapel Credit", name:"Be Renewed"},
-        {date: "10/26/2026", time:"12:00 PM", credit_type:"Elective Credit", name:"Theology Club"},
-        {date: "11/4/2026", time:"11:00 AM", credit_type:"Elective Credit", name:"Quaker Worship"},
-        {date: "11/4/2026", time:"5:00 PM", credit_type:"Elective Credit", name:"Honor's Evening Prayer"},
-        {date: "11/4/2026", time:"7:30 PM", credit_type:"Chapel Credit", name:"Be With"},
-        {date: "11/5/2026", time:"10:50 AM", credit_type:"Chapel Credit", name:"Be Renewed"}
-    ]
-    return sample
+    // create query
+    let query = `SELECT * FROM events WHERE date >= CURRENT_DATE ORDER BY date ASC LIMIT 10;`
+    
+    // select
+    let result = (await db.pgGetPool().query(query)).rows
+    return result
 }
 
 module.exports = {
