@@ -1,6 +1,8 @@
 // parser module for returing a 2d array of csv values
 
 const fs = require("fs");
+const regex = /,(?=(?:(?:[^"]*"){2})*[^"]*$)/;
+
 
 /**
  * read the csv file and return a row of data
@@ -43,7 +45,7 @@ function readChapel(file)
     for (const row of rows) 
     {
         // split each element into their own column
-        let row_arr = row.replaceAll("\r","").split(',');
+        let row_arr = row.replaceAll("\r","").split(regex);
 
         // container to hold results
         let final = []
