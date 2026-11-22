@@ -1,6 +1,7 @@
 // TODO Make a class to upload data to the database
 // Term 'headers' are also "column names"
 // TODO document functions!!
+// TODO ACTUALLY COME BACK AND COMMENT
 
 const db = require('../db.js')
 const csv_parse = require("../helpers/data_parse.js")
@@ -50,7 +51,6 @@ class DataUpload {
 
         // clean the insertable data
         data = await this.cleanData(header, data);
-        console.log(data);
 
         // return string query, final insertable data
         return {insert_query, insert_data: data.flat()};
@@ -258,7 +258,29 @@ class DataUploadEvent extends DataUpload {
      * @param {array} header column data
      * @returns array with replaced column names for db
      */
-    headerClean(header) {
+    headerClean(head) {
+        // create a copy
+        let header = [...head]
+
+        // get index
+        let ct_idx = header.indexOf("chapel_title");
+        let loc_idx = header.indexOf("location");
+        let series_idx = header.indexOf("series");
+
+        // create a boolean if any of the data is there
+        const HAS_CT = (ct_idx != -1);
+        const HAS_LOC = (loc_idx != -1);
+        const HAS_SERIES = (series_idx != -1);
+
+        // replce
+        if (HAS_CT) header[ct_idx] = "chapel_title_id"
+
+        // replace locations
+        if (HAS_LOC) header[loc_idx] = "location_id"
+
+        // replace series
+        if (HAS_SERIES) header[series_idx] = "event_series_id"
+
         return header
     }
 }
