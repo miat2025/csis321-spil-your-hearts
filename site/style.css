@@ -33,6 +33,7 @@
 }
 
 #nav-container {
+    text-align: center;
     position: relative;
     width: inherit;
     display: flex;
