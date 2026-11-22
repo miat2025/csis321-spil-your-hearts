@@ -46,7 +46,7 @@ class DataUpload {
         let insert_query = this.createQuery(header, placeholder);
 
         // clean the insertable data
-        data = await this.cleanData(data);
+        data = await this.cleanData(header, data);
 
 
         // return string query, final insertable data
@@ -95,7 +95,7 @@ class DataUpload {
      * @param {Array} array array of 2d data to clean
      * @returns cleaned array
      */
-    async cleanData(array) {
+    async cleanData(header,array) {
         return array;
     }
 
@@ -208,7 +208,7 @@ class DataUploadEvent extends DataUpload {
      * @param {Array} array array of 2d data to clean
      * @returns cleaned array
      */
-    async cleanData(array) {
+    async cleanData(header,array) {
         // Idea is to replace name to an ID
 
         // select the data that we need to interpret what the data means
@@ -218,12 +218,26 @@ class DataUploadEvent extends DataUpload {
         let locations = (await psql.query("SELECT id, code FROM location;")).rows;
         let series = (await psql.query("SELECT id, name FROM series;")).rows
 
-        await psql.end()
+        await psql.end();
 
         // convert the data to a map we can quickly select where data does
-        console.log(chapel_titles, locations, series)
-        // look through array for what is needed to be replaced for an id
+        let ct_map = DataUpload.valueToId(chapel_titles, "title");
+        let loc_map = DataUpload.valueToId(locations, "code");
+        let series_map = DataUpload.valueToId(series, "name")
 
+        console.log(ct_map, loc_map, series_map);
+
+        // look through array for what is needed to be replaced for an id
+        // 1. locate what column index each element is in
+        let ct_idx = header.indexOf("chapel_title");
+        let loc_idx = header.indexOf("location");
+        let series_idx = header.indexOf("series");
+        console.log(ct_idx, loc_idx, series_idx)
+
+        // 2. perform replacement for each column
+        for (const row of array) {
+            
+        }
 
         return array;
     }
