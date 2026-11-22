@@ -67,7 +67,7 @@ class DataUpload {
         }
         // get the data and query
         const { insert_query, insert_data } = await this.parse_data(data_array);
-        console.log(insert_query)
+
         // add to database
         //await db.pgGetPool().query(insert_query, insert_data.flat());
     }
@@ -146,8 +146,16 @@ class DataUpload {
         return r;
     }
 
-    static createSearchMap() {
+    static valueToId(data, key_name) {
+        // initialize map
+        let map = {};
+        // loop data for matching
+        for (const row of data) {
+            // match key name to and id
+            map[row[key_name]] = row.id;
+        }
 
+        return map;
     }
 
     /**
