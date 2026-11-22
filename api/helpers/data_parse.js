@@ -53,7 +53,7 @@ function readChapel(file)
         // clean each element
         for (let i = 0; i < row_arr.length; i++){
             // our element
-            let col = row_arr[i];
+            let col = row_arr[i].trim();
             let col_lower = col.toLowerCase();
 
             // if element if an empty string, it is null
