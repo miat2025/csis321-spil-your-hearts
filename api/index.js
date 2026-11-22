@@ -22,6 +22,16 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
 
+// ADD ADMIN AUTHENTICATION LATER
+app.get("/admin", (req, res) => {
+    res.sendFile(__dirname + '/private/admin/index.html');
+});
+app.get("/admin/:page", (req, res) => {
+	res.sendFile(path.join(__dirname, "private/admin", `${req.params.page}.html`))
+});
+app.use("/admin/css", express.static(path.join(__dirname, "private/admin/css")));
+app.use("/admin/js", express.static(path.join(__dirname, "private/admin/js")));
+
 // testing route
 app.get("/test", async (req, res)=> {
     console.log("l")
@@ -38,8 +48,6 @@ app.get("/speakers/:get", async (req, res) => {
     res.status(200).json(["ok"])
 })
 
-// ADD ADMIN AUTHENTICATION LATER
-app.use("/private/css", express.static(path.join(__dirname, "private/css")));
-app.use("/private/js", express.static(path.join(__dirname, "private/js")));
+// 
 
 app.listen(3003, () => console.log("listening on port 3003"))
