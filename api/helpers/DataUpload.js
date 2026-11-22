@@ -47,7 +47,7 @@ class DataUpload {
 
         // clean the insertable data
         data = await this.cleanData(header, data);
-
+        console.log(data);
 
         // return string query, final insertable data
         return {insert_query, insert_data: data.flat()};
@@ -225,18 +225,21 @@ class DataUploadEvent extends DataUpload {
         let loc_map = DataUpload.valueToId(locations, "code");
         let series_map = DataUpload.valueToId(series, "name")
 
-        console.log(ct_map, loc_map, series_map);
-
         // look through array for what is needed to be replaced for an id
         // 1. locate what column index each element is in
         let ct_idx = header.indexOf("chapel_title");
         let loc_idx = header.indexOf("location");
         let series_idx = header.indexOf("series");
-        console.log(ct_idx, loc_idx, series_idx)
+
+        // create a boolean if any of the data is there
+        const HAS_CT = (ct_idx != -1);
+        const HAS_LOC = (loc_idx != -1);
+        const HAS_SERIES = (series_idx != -1);
 
         // 2. perform replacement for each column
         for (const row of array) {
-            
+            // replace chapel title
+            if (HAS_CT) row[ct_idx] = ct_map[row[ct_idx]];
         }
 
         return array;
