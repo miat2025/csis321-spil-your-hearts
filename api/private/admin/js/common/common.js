@@ -37,7 +37,13 @@ class TableManager {
     /**
      * Return the head node for the head
      */
-    getHead(){
-        return this.table_element
+    getHead(){return this.table_element.querySelector("thead").querySelector("tr");}
+
+    getBody(){return this.table_element.querySelector("tbody");}
+
+    getTable() {return this.table_element}
+
+    populateTable() {
+        ; // dummy for overloading
     }
 }
