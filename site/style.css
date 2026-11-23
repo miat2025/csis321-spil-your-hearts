@@ -49,6 +49,55 @@
     }
 }
 
+.upcoming
+{
+    position: relative;
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    border: 1px solid #1F2A42;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom:10px;
+
+    .upcoming-event-title
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+
+    .upcoming-event-date
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+
+    .upcoming-event-time
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+
+    .upcoming-event-credit
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+}
+
 #title-container {
     position: relative;
     width: inherit;
