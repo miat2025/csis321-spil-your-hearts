@@ -372,3 +372,12 @@ button {
     align-items: flex-start;
 }
 
+
+form{
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: center;
+}
