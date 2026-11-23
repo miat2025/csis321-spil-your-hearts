@@ -24,8 +24,9 @@ async function fetchGetBackend(route) {
     return await fetchGet(`${window.location.origin}/be` + route)
 }
 
-function parserSvg(){
-    
+function parseSvg(string){
+    let svg_pre = dompar.parseFromString(string, 'text/html')
+    return drop_icon = svg_pre.body.firstElementChild;
 }
 
 
