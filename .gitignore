@@ -3,4 +3,5 @@ api/node_modules/
 api/connect.txt
 api/.env
 api/csv
+updates.sql
 .DS_Store
