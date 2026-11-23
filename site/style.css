@@ -1,3 +1,4 @@
+/*This is the CSS that gets applied through all the pages.*/
 #main-contain{
     position: relative;
     width: 100%;
@@ -49,6 +50,92 @@
     }
 }
 
+
+#title-container {
+    position: relative;
+    width: inherit;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2em;
+    margin: auto;
+}
+
+#nav-links {
+    font-size: 1.5em;
+    POSITION: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.nav-link-element{
+    position: relative;
+    color: #1F2A42;
+    padding: 10px;
+}
+
+.nav-link-element:hover {
+    background-color: #CFD8E2;
+    color: #FDB814;
+}
+
+.footer-image{
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 15%;
+}
+
+#body-container{
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: center;
+
+    table{
+        position: relative;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+
+        th{
+            padding: 6px;
+            font-size: 25px;
+            text-align: left;
+            color: #1F2A42;
+        }
+        td{
+            font-size: 18px;
+            padding: 6px;
+            color: #F3F5F8;
+        }
+    }
+}
+
+@media screen and (max-width:800px){
+    #nav-container{
+        z-index:1000;
+    }
+
+    #nav-links{
+        position: fixed;
+        right:0;
+        background-color: orange;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-size: 1em;
+        .nav-link-element{
+            padding: 6px;
+            width: 50px;
+        }
+    }
+}
+
+/*This is the CSS for the main page.*/
 .upcoming
 {
     position: relative;
@@ -130,142 +217,35 @@
     }
 }
 
-#title-container {
-    position: relative;
-    width: inherit;
-    display: flex;
-    justify-content: space-between;
-    font-size: 2em;
-    margin: auto;
-}
 
-#bio-name-container{
-  text-align: center;
-  left: 0;
-  width: inherit;
-  display: flex;
-  font-style: italic;
-  font-size: 1.2em;
-  margin: 20px;
-  color: #F3F5F8;
-  justify-content: flex-start;
-}
+/*This is the CSS for the interest form page.*/
 
-#bio-container {
-    text-align: right;
-    left: 0;
-    width: inherit;
-    display: flex;
-}
-
-#bio-text{
-    text-align: left;
-    left: 0;
-    width: inherit;
-    display: flex;
-    font-size: 1.2em;
-    margin: 20px;
-    color: #F3F5F8;
-    justify-content: flex-start;
-    flex-direction: column;
-    padding-bottom: 58px;
-}
-
-#nav-links {
-    font-size: 1.5em;
-    POSITION: relative;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.nav-link-element{
-    position: relative;
-    color: #1F2A42;
-    padding: 10px;
-}
-
-.nav-link-element:hover {
-    background-color: #CFD8E2;
-    color: #FDB814;
-}
-
-
-.bio-image{
-    padding: 10px;
-    display: block;
-    margin-right: 10px;
-    align-items: center;
-    width: auto;
-    float: left;
-    border-radius: 10px;
-}
-
-.footer-image{
-    padding: 10px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 15%;
-}
-
-#body-container{
+form{
     position: relative;
     margin: auto;
+    margin-left: 50px;
     display: flex;
     flex-direction: column;
     background-color: #7998AC;
-    align-items: center;
-
-    table{
-        position: relative;
-        margin-top: 20px;
-        margin-bottom: 20px;
-
-
-        th{
-            padding: 6px;
-            font-size: 25px;
-            text-align: left;
-            color: #1F2A42;
-        }
-        td{
-            font-size: 18px;
-            padding: 6px;
-            color: #F3F5F8;
-        }
-    }
+    align-items: flex-start;
+    font-size: 20px;
 }
 
-@media screen and (max-width:800px){
-    #nav-container{
-        z-index:1000;
-    }
-
-    #nav-links{
-        position: fixed;
-        right:0;
-        background-color: orange;
-        display: flex;
-        flex-direction: column;
-        color: white;
-        font-size: 1em;
-        .nav-link-element{
-            padding: 6px;
-            width: 50px;
-        }
-    }
+#form-instructions{
+  font-size: 20px;
+  margin-left: 25px;
+  margin-right: 75px;
 }
 
 
 
-
-
+/*This is the CSS for the calendar page.*/
 body1 {
   display: flex;
   justify-content: center;
   background-color: #7998AC;
 }
+
 button {
   width: 75px;
   cursor: pointer;
@@ -388,6 +368,7 @@ button {
   background-color: rgba(0,0,0,0.8);
 }
 
+/*This is the CSS for the about us page.*/
 #about-body-container{
     position: relative;
     margin: auto;
@@ -397,20 +378,44 @@ button {
     align-items: flex-start;
 }
 
-
-form{
-    position: relative;
-    margin: auto;
-    margin-left: 50px;
-    display: flex;
-    flex-direction: column;
-    background-color: #7998AC;
-    align-items: flex-start;
-    font-size: 20px;
+#bio-name-container{
+  text-align: center;
+  left: 0;
+  width: inherit;
+  display: flex;
+  font-style: italic;
+  font-size: 1.2em;
+  margin: 20px;
+  color: #F3F5F8;
+  justify-content: flex-start;
 }
 
-#form-instructions{
-  font-size: 20px;
-  margin-left: 25px;
-  margin-right: 75px;
+#bio-container {
+    text-align: right;
+    left: 0;
+    width: inherit;
+    display: flex;
+}
+
+#bio-text{
+    text-align: left;
+    left: 0;
+    width: inherit;
+    display: flex;
+    font-size: 1.2em;
+    margin: 20px;
+    color: #F3F5F8;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-bottom: 58px;
+}
+
+.bio-image{
+    padding: 10px;
+    display: block;
+    margin-right: 10px;
+    align-items: center;
+    width: auto;
+    float: left;
+    border-radius: 10px;
 }
