@@ -58,38 +58,11 @@
     justify-content: space-between;
     margin: auto;
     width: 400px;
-    height: 150px;
+    height: 50px;
     border: 1px solid #1F2A42;
     padding: 20px;
     margin-top: 10px;
     margin-bottom:10px;
-
-    .upcoming-event-date
-    {
-        padding: 6px;
-        font-size: 1.5em;
-        width: fit-content;
-        margin-top: 10px;
-        color: #1F2A42;
-    }
-
-    .upcoming-event-time
-    {
-        padding: 6px;
-        font-size: 1.5em;
-        width: fit-content;
-        margin-top: 10px;
-        color: #1F2A42;
-    }
-
-    .upcoming-event-credit
-    {
-        padding: 6px;
-        font-size: 1.5em;
-        width: fit-content;
-        margin-top: 10px;
-        color: #1F2A42;
-    }
 }
 
 #upcoming-event-title-container
@@ -102,6 +75,39 @@
         margin-top: 10px;
         color: #1F2A42;
         text-align: right;
+    }
+}
+
+#upcoming-event-credit-container
+{
+  .upcoming-event-credit
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+}
+
+#upcoming-event-datetime-container
+{
+  .upcoming-event-date
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+
+  .upcoming-event-time
+  {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
     }
 }
 
