@@ -24,6 +24,10 @@ async function fetchGetBackend(route) {
     return await fetchGet(`${window.location.origin}/be` + route)
 }
 
+function parserSvg(){
+    
+}
+
 
 class TableManager {
     /**

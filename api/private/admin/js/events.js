@@ -5,7 +5,9 @@
 // global vars
 let people_list = null;
 let events = null;
-let eventsTable = null
+let eventsTable = null;
+
+const dompar = new DOMParser(); // for the svg
 
 /**
  * main function
@@ -24,7 +26,7 @@ async function main() {
 
 class EventsTable extends TableManager {
     constructor (table) {
-        super(table)
+        super(table);
         this.people = null;
         this.events = null;
     }
@@ -61,6 +63,7 @@ class EventsTable extends TableManager {
 
             // add speaker
             let speaker = document.createElement("td");
+            speaker.append(this.createSpeakerListButton())
 
             // add host
             let host_ele = document.createElement("td");
@@ -68,6 +71,37 @@ class EventsTable extends TableManager {
             row_element.append(id_ele, date_ele,ct_ele,time_ele,speaker,host_ele);
             table.append(row_element)
         }
+    }
+
+    createSpeakerListButton() {
+        // create dropdown button
+        let main = document.createElement("div");
+        main.classList.add("flex-row", 'speaker-drop')
+        
+
+        // create text element
+        // create conditional for no speaker and for with speaker
+        let text_ele = document.createElement("div");
+        text_ele.textContent = "No speakers..."
+
+        // add dropdown svg
+        let svg_pre = dompar.parseFromString('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,15L7,10H17l-5,5Z"/></svg>', 'text/html')
+        let drop_icon = svg_pre.body.firstElementChild;
+
+        main.append(text_ele, drop_icon);
+
+        return main;
+        
+    }
+
+    createPeopleDropdown () {
+        // create main container
+
+        // create a textBox
+
+        // create container for people elements
+
+        // iterate through people and add to list while filtering
     }
 }
 

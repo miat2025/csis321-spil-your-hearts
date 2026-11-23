@@ -1,3 +1,6 @@
-#main-container {
-    
+.speaker-drop {
+    svg {
+        width:30px;
+    }
+    white-space: nowrap;
 }

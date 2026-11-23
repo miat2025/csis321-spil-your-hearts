@@ -14,7 +14,12 @@ h1 {
     }
 }
 
-
+.flex-row {
+    position:relative;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
 
 
 .inter-thin {
