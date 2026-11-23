@@ -48,6 +48,9 @@ app.get("/speakers/:get", async (req, res) => {
     res.status(200).json(["ok"])
 })
 
-// 
+// backend router manager
+const beRouter = require(HELPER_DEST + "/router_backend")
+app.use("/be", beRouter)
+
 
 app.listen(3003, () => console.log("listening on port 3003"))
