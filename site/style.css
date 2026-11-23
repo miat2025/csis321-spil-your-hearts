@@ -63,6 +63,25 @@
     padding: 20px;
     margin-top: 10px;
     margin-bottom:10px;
+
+    .see-more
+    {
+      position: right;
+      width: inherit;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: auto;
+      width: 50px;
+      height: 10px;
+      border: 1px solid #1F2A42;
+      padding: 20px;
+      margin-top: 10px;
+      margin-bottom:10px;
+      margin-right: 170px;
+
+      text-align: center;
+    }
 }
 
 #upcoming-event-title-container
