@@ -16,6 +16,7 @@ router.get("/next", async (req, res) => {
         res.status(200).json(nextDates);
     } catch(error) {
         // if something is wrong, return proper statsus code
+        console.log(error)
         res.status(500).json(["Internal Error"])
     }
 })
@@ -24,7 +25,7 @@ router.get("/next", async (req, res) => {
 router.get("/nextExt", async (req, res) => {
     // try to get info from database
     try {
-        let nextDates = await chapel.getNextDates();
+        let nextDates = await chapel.getNextDatesExt();
         res.status(200).json(nextDates);
     } catch(error) {
         // if something is wrong, return proper statsus code

@@ -1,11 +1,15 @@
 // TODO Make a class to upload data to the database
 // Term 'headers' are also "column names"
 // TODO document functions!!
+// TODO ACTUALLY COME BACK AND COMMENT
 
 const db = require('../db.js')
 const csv_parse = require("../helpers/data_parse.js")
 const csv_placeholder = require("../helpers/placeholder.js")
 
+/**
+ * Class for uploading data onto the database
+ */
 class DataUpload {
     /**
      * Class constructor
@@ -21,26 +25,35 @@ class DataUpload {
         this.file = file;
     }
 
-    parse_data(data){
+    /**
+     * parse the data before db use
+     * @param {Array} data Array of csv data
+     * @returns an object of a query and the final array of data to upsert
+     */
+    async parse_data(data){
         // get the first row of data
         // this results in the original updated without first row
         let header = data.shift();
 
         // verify correct minimum header/columns
         if (! this.headerVerification(header)) {
-            throw new Error("invalid columns from file")
+            throw new Error("invalid columns from file");
         }
+
+        // clean hedaer if needed;
+        let headerCld = this.headerClean(header);
 
         // get the placeholders
         const placeholder = csv_placeholder(data);
 
         // build final query string
-        let insert_query = this.createQuery(header, placeholder) 
+        let insert_query = this.createQuery(headerCld, placeholder);
 
         // clean the insertable data
+        data = await this.cleanData(header, data);
 
         // return string query, final insertable data
-        return {insert_query, insert_data: data.flat()}
+        return {insert_query, insert_data: data.flat()};
     }
 
     /**
@@ -56,14 +69,17 @@ class DataUpload {
             throw new Error("something went wrong in parsing");
         }
         // get the data and query
-        const { insert_query, insert_data } = this.parse_data(data_array);
+        const { insert_query, insert_data } = await this.parse_data(data_array);
 
-        console.log(insert_query, insert_data);
-        
         // add to database
         await db.pgGetPool().query(insert_query, insert_data.flat());
     }
 
+    /**
+     * Verify the headers are valid for the selected table
+     * @param {Array} header Array of column (header) data
+     * @returns boolean if data is valid
+     */
     headerVerification(header) {
         let inputHeaders = new Set(header);
 
@@ -71,10 +87,19 @@ class DataUpload {
         for(const reqired_cols of [...this.valid_min_cols]){
             //if the column does not has minimum required, error
             if (!inputHeaders.has(reqired_cols)){
-                return false
+                return false;
             }
         }
         return true;
+    }
+
+    /**
+     * Clean the array. Will replace certain data from database if required
+     * @param {Array} array array of 2d data to clean
+     * @returns cleaned array
+     */
+    async cleanData(header,array) {
+        return array;
     }
 
     /**
@@ -93,7 +118,11 @@ class DataUpload {
         return r;
     }
 
-    
+    /**
+     * Create an on conflict query of there are any
+     * @param {array} header array of column data
+     * @returns string of on conflict info or empty string.
+     */
     generateOnConflict(header) {
         // keep track of headers to insert
         let inputHeaders = new Set(header);
@@ -118,6 +147,22 @@ class DataUpload {
             ${updating_cols.join(",")}
         `
         return r;
+    }
+
+    static valueToId(data, key_name) {
+        // initialize map
+        let map = {};
+        // loop data for matching
+        for (const row of data) {
+            // match key name to and id
+            map[row[key_name]] = row.id;
+        }
+
+        return map;
+    }
+
+    headerClean(header) {
+        return header;
     }
 
     /**
@@ -146,16 +191,6 @@ class DataUploadPeople extends DataUpload {
     }
 }
 
-class DataUploadPeople extends DataUpload {
-    constructor (table, file) {
-        super(table, file);
-
-        this.valid_min_cols = new Set(["first_name", "last_name"]);
-        this.on_conflict_cols = new Set(["last_name", "first_name"]);
-        this.updatable_cols = new Set(["is_gfu", "email"])
-    }
-}
-
 class DataUploadLocation extends DataUpload {
     constructor (table, file) {
         super(table, file);
@@ -166,10 +201,94 @@ class DataUploadLocation extends DataUpload {
     }
 }
 
+class DataUploadEvent extends DataUpload {
+
+     /**
+     * Clean the array. Will replace certain data from database if required
+     * @param {Array} array array of 2d data to clean
+     * @returns cleaned array
+     */
+    async cleanData(header,array) {
+        // Idea is to replace name to an ID
+
+        // select the data that we need to interpret what the data means
+        let psql = await db.pgGetConnection();
+
+        let chapel_titles = (await psql.query("SELECT id, title FROM chapel_title;")).rows; // we are needing the rows data only
+        let locations = (await psql.query("SELECT id, name FROM location;")).rows;
+        let series = (await psql.query("SELECT id, name FROM series;")).rows
+
+        await psql.end();
+
+        // convert the data to a map we can quickly select where data does
+        let ct_map = DataUpload.valueToId(chapel_titles, "title");
+        let loc_map = DataUpload.valueToId(locations, "name");
+        let series_map = DataUpload.valueToId(series, "name")
+
+        // look through array for what is needed to be replaced for an id
+        // 1. locate what column index each element is in
+        let ct_idx = header.indexOf("chapel_title");
+        let loc_idx = header.indexOf("location");
+        let series_idx = header.indexOf("series");
+
+        // create a boolean if any of the data is there
+        const HAS_CT = (ct_idx != -1);
+        const HAS_LOC = (loc_idx != -1);
+        const HAS_SERIES = (series_idx != -1);
+
+        // 2. perform replacement for each column
+        for (const row of array) {
+            // nullish coalescing operator my beloved -levi
+
+            // replace chapel title
+            if (HAS_CT) row[ct_idx] = ct_map[row[ct_idx]] ?? row[ct_idx];
+
+            // replace locations
+            if (HAS_LOC) row[loc_idx] = loc_map[row[loc_idx]] ?? row[loc_idx];
+
+            // replace series
+            if (HAS_SERIES) row[series_idx] = series_map[row[series_idx]] ?? row[series_idx];
+        }
+
+        return array;
+    }
+
+    /**
+     * Replace column headers for their database/er counterpart
+     * @param {array} header column data
+     * @returns array with replaced column names for db
+     */
+    headerClean(head) {
+        // create a copy
+        let header = [...head]
+
+        // get index
+        let ct_idx = header.indexOf("chapel_title");
+        let loc_idx = header.indexOf("location");
+        let series_idx = header.indexOf("series");
+
+        // create a boolean if any of the data is there
+        const HAS_CT = (ct_idx != -1);
+        const HAS_LOC = (loc_idx != -1);
+        const HAS_SERIES = (series_idx != -1);
+
+        // replce
+        if (HAS_CT) header[ct_idx] = "chapel_title_id"
+
+        // replace locations
+        if (HAS_LOC) header[loc_idx] = "location_id"
+
+        // replace series
+        if (HAS_SERIES) header[series_idx] = "event_series_id"
+
+        return header
+    }
+}
+
 const table_to_class = {
     "people": DataUploadPeople,
     "location": DataUploadLocation,
-    "event": DataUpload,
+    "events": DataUploadEvent,
     "series": DataUpload,
     "chapel_title": DataUpload
 }
