@@ -1,5 +1,5 @@
 -- SQL BY Levi for defining database schema 
--- ER diagram under docs->diagrams
+-- ER diagram under docs -> diagrams
 
 BEGIN;
 
@@ -7,12 +7,13 @@ CREATE TABLE chapel_title (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     weekday VARCHAR(15),
-    chapel_time TIME,
+    time_start TIME,
+    time_end TIME,
     credits INTEGER NOT NULL DEFAULT 0
 );
 -- SELECT by chapel credits
 CREATE INDEX idx_credits ON chapel_title(credits);
-CREATE INDEX idx_chapel_time ON chapel_title(chapel_time);
+CREATE INDEX idx_chapel_time ON chapel_title(time_start);
 
 CREATE TABLE series (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -46,13 +47,13 @@ CREATE TABLE people (
     email VARCHAR(255) DEFAULT NULL,
     bio TEXT DEFAULT NULL,
     brief TEXT DEFAULT NULL,
-    isgfu BOOLEAN NOT NULL DEFAULT FALSE
+    is_gfu BOOLEAN NOT NULL DEFAULT FALSE
 );
 -- Create an index to locate speakers by last name
-CREATE INDEX idx_people_lName ON people(last_name);
 CREATE INDEX idx_people_fName ON people(first_name);
+CREATE UNIQUE INDEX U_idx_people ON people(last_name, first_name);
 -- Create an index to better find gfu speakers
-CREATE INDEX idx_isgfu ON people(isgfu);
+CREATE INDEX idx_isgfu ON people(is_gfu);
 
 CREATE TABLE events (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -60,7 +61,8 @@ CREATE TABLE events (
     description TEXT,
     date DATE NOT NULL,
     -- for these we are to use coalesce
-    new_time TIME DEFAULT NULL, -- if not null, there are is a new time
+    new_time_start TIME DEFAULT NULL, -- if not null, there are is a new time end
+    new_time_end TIME DEFAULT NULL, -- if not null, there are is a new end time
     new_credits INTEGER DEFAULT NULL, -- if not null, there is a different credit count
 
     location_id BIGINT REFERENCES location(id) 
@@ -70,6 +72,8 @@ CREATE TABLE events (
     event_series_id BIGINT REFERENCES series(id)
         ON DELETE SET NULL ON UPDATE CASCADE
 );
+
+CREATE INDEX idx_event_time ON events(new_time_start); -- when selecting for times
 
 CREATE TABLE event_speakers (
     event_id BIGINT NOT NULL,

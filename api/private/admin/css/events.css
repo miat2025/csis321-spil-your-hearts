@@ -1,0 +1,13 @@
+.people-drop {
+    svg {
+        width:30px;
+    }
+    white-space: nowrap;
+}
+
+.people-drop-popup {
+    position: absolute;
+    background-color: grey;
+    box-shadow: 10px 11px  rgba(0, 0, 0, 0.7);
+    padding:20px;
+}

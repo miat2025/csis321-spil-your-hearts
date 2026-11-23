@@ -2,8 +2,6 @@
  * this function is for creating nodejs 'pg' library placeholders for inserting data
  */
 
-const csv_parse = require("../helpers/data_parse.js")
-
 function placeholderFunction(array)
 {
     const row = array.length

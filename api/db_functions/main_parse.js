@@ -6,17 +6,17 @@
  * Ex:
  * node db_functions/main_parse.js people csv/people.csv
  */
-const db = require('../db.js')
-const csv_parse = require("../helpers/data_parse.js")
-const csv_placeholder = require("../helpers/placeholder.js")
+//const csv_parse = require("../helpers/data_parse.js")
+//const csv_placeholder = require("../helpers/placeholder.js")
+const DataUpload = require("../helpers/DataUpload.js")
 const fs = require('fs')
 
-// read command line args
+const MAX_ARGV_LENGTH = 4;
 
-function main() {
+async function main() {
     // check if argument count is correct
-    console.log(process.argv)
-    if (process.argv.length != 4) {
+    //console.log(process.argv)
+    if (process.argv.length != MAX_ARGV_LENGTH) {
         console.error('Invalid number of elements!')
         process.exit(1)
     }
@@ -25,45 +25,28 @@ function main() {
     let table_name = process.argv[2];
     let file_name = process.argv[3];
 
-    // get data from csv
-    const data_array = csv_parse(file_name);
-    if(!data_array) {
-        // if something went wrong exit
-        // csv_parse already prints error
-        console.log("something went wrong")
-        process.exit(1);
+    // get the object to perform job
+    const jobClass = DataUpload[table_name];
+
+    // if table was not found
+    if (!jobClass){
+        console.error(`${table_name} is not a valid table. Exiting program`)
+        process.exit(1)
     }
 
-    // get the first row of data
-    // this results in the original updated without first row
-    let header = data_array.shift();
-
-    // get place holder string
-    const placeholder = csv_placeholder(data_array);
-    
-    // generate our insert
-    let insert_query = `
-        INSERT into ${table_name} (${getColumns(header)})
-        VALUES ${placeholder}
-    `;   
-    console.log(insert_query)
-    // insert to database
-}
-
-/**
- * get the columns for a string
- * @param {Array} row csv array data
- * @returns string of head
- */
-function getColumns(row){
-    let result = []
-
-    for (const col of row){
-        console.log(col)
-        result.push(col)
+    // initialize uploader
+    const uploader =  new jobClass(table_name, file_name);
+    try {
+        await uploader.main_upload();
+        console.log("Data has successfully uploaded!");
+    }
+    catch (e){
+        console.log(e);
     }
 
-    return result.join(',')
+    process.exit(0);
 }
+
+
 
 main();

@@ -4,8 +4,8 @@
         <title>
             CSIS 321 Project
         </title>
-        <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/homepage.css?">
         <meta charset = "UTF-8">
         <meta name ="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -13,70 +13,77 @@
         <div id="main-contain">
             <div id = "nav-container">
                 <div id = "nav-logo" class = "nav-element">
-                    <img id= nav-spillogo class = "body-image" src = "SPILlogo.png" alt = "spiL_logo">
+                    <img id= nav-spillogo class = "body-image" src = "Logos/SPILlogo.png" alt = "spiL_logo">
                 </div>
                 
                 <div id = "nav-links" class = "nav-element">
                     <a href = "#" class = "nav-link-element">Home</a>
-                    <a href = "interestForm.html" class = "nav-link-element">Interest Form</a>
+                    <a href = "interestForm.html" class = "nav-link-element">Chapel Interest Form</a>
                     <a href = "mainCalendar.html" class = "nav-link-element">Main Calendar</a>
                     <a href = "aboutUs.html" class = "nav-link-element">About Us</a>
                 </div>
                 <div class="nav-head">
-                    GFU SpiL
+                    SpiL Your Hearts
                 </div>
             </div>
             <div id = "body-container">
-            
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Credit Type</th>
-                            <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="elective">
-                            <td>10/26/2026</td>
-                            <td>12:00 PM</td>
-                            <td>Elective Credit</td>
-                            <td>Theology Club</td>
-                        </tr>
-                        <tr class="elective">
-                            <td>11/4/2026</td>
-                            <td>11:00 AM</td>
-                            <td>Elective Credit</td>
-                            <td>Quaker Worship</td>
-                        </tr>
-                        <tr class="elective">
-                            <td>11/4/2026</td>
-                            <td>5:00 PM</td>
-                            <td>Elective Credit</td>
-                            <td>Honor's Evening Prayer</td>
-                        </tr>
-                        <tr class="chapel">
-                            <td>11/4/2026</td>
-                            <td>7:30 PM</td>
-                            <td>SpiL/Chapel Credit</td>
-                            <td>Be With</td>
-                        </tr>
-                        <tr class="chapel">
-                            <td>11/5/2026</td>
-                            <td>10:50 AM</td>
-                            <td>SpiL/Chapel Credit</td>
-                            <td>Be Renewed</td>
-                        </tr>
-                    </tbody>
-                    <tr>
-
-                    </tr>
-                </table>
+                <div id = "slideshow">  
+                    <div class = "slideshow"></div>
+                </div>
+                <h1 id = "title-container">Upcoming</h1>
+                <select id = "filter">
+                    <option value="Chapel Credit">Chapel Credit</option>
+                    <option value="Elective Credit">Elective Credit</option>
+                </select>
+                <div id="upcoming-events-1" class = "upcoming">
+                    <div class = "upcoming-event">
+                        <h2 id = "upcoming-event-title-container" class = "upcoming-event-title">Chapel Title Name</h2>
+                        <p class = "upcoming-event-date">Date</p>
+                        <p class = "upcoming-event-time">Time</p>
+                        <p id = "upcoming-event-credit-container" class = "upcoming-event-credit">Chapel Credit</p>
+                    </div>
+                </div>
+                <div id="upcoming-events-2" class = "upcoming">
+                    <div class = "upcoming-event">
+                        <h2 id = "upcoming-event-title-container" class = "upcoming-event-title">Chapel Title Name</h2>
+                        <p class = "upcoming-event-date">Date</p>
+                        <p class = "upcoming-event-time">Time</p>
+                        <p class = "upcoming-event-credit">Chapel Credit</p>
+                    </div>
+                </div>
+                <div id="upcoming-events-3" class = "upcoming">
+                    <div class = "upcoming-event">
+                        <h2 class = "upcoming-event-title">Chapel Title Name</h2>
+                        <p class = "upcoming-event-date">Date</p>
+                        <p class = "upcoming-event-time">Time</p>
+                        <p class = "upcoming-event-credit">Chapel Credit</p>
+                    </div>
+                </div>
+                <div id="upcoming-events-4" class = "upcoming">
+                    <div class = "upcoming-event">
+                        <h2 class = "upcoming-event-title">Chapel Title Name</h2>
+                        <p class = "upcoming-event-date">Date</p>
+                        <p class = "upcoming-event-time">Time</p>
+                        <p class = "upcoming-event-credit">Chapel Credit</p>
+                    </div>
+                </div>
+                <div id="upcoming-events-5" class = "upcoming">
+                    <div class = "upcoming-event">
+                        <h2 class = "upcoming-event-title">Chapel Title Name</h2>
+                        <p class = "upcoming-event-date">Date</p>
+                        <p class = "upcoming-event-time">Time</p>
+                        <p class = "upcoming-event-credit">Chapel Credit</p>
+                    </div>
+                </div>
+                <div id="see_more">
+                    <a href = "mainCalendar.html" class = "see-more">
+                        See more
+                    </a>
+                </div>
             </div>
             <div id = "foot-container"></div>
                 <div id = "nav-footer" class = "nav-element">
-                    <img class = "footer-image" src = "GFU image.png" alt = "GFU_logo">
+                    <img class = "footer-image" src = "Logos/GFU image.png" alt = "GFU_logo">
                 </div>
         </div>
     </body>

@@ -1,3 +1,4 @@
+/*This is the CSS that gets applied through all the pages.*/
 #main-contain{
     position: relative;
     width: 100%;
@@ -27,13 +28,13 @@
 #nav-footer {
     position: relative;
     width: 100%;
-    height: 100%;
     background-color: #1F2A42;
 
 
 }
 
 #nav-container {
+    text-align: center;
     position: relative;
     width: inherit;
     display: flex;
@@ -49,6 +50,7 @@
     }
 }
 
+
 #title-container {
     position: relative;
     width: inherit;
@@ -56,24 +58,6 @@
     justify-content: space-between;
     font-size: 2em;
     margin: auto;
-}
-
-#bio-name-container{
-  text-align: center;
-  left: 0;
-  width: inherit;
-  display: flex;
-  font-style: italic;
-  font-size: 1.2em;
-  margin: 20px;
-}
-
-#bio-container {
-    text-align: left;
-    left: 0;
-    width: inherit;
-    display: flex;
-    margin: 20px;
 }
 
 #nav-links {
@@ -93,15 +77,6 @@
 .nav-link-element:hover {
     background-color: #CFD8E2;
     color: #FDB814;
-}
-
-.bio-image{
-    padding: 10px;
-    display: block;
-    margin-left: auto;
-    margin-right: 10px;
-    align-items: center;
-    width: 80%;
 }
 
 .footer-image{
@@ -160,16 +135,148 @@
     }
 }
 
+/*This is the CSS for the main page.*/
+#slideshow
+{
+  margin: auto;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: black;
+}
+
+.slideshow
+{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin: 0 auto;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-image: url("../home-page-slideshow/chapel.webp");
+  animation: changeBackground 12s infinite;
+}
+
+@keyframes changeBackground {
+  0%, 30% { background-image: url("../home-page-slideshow/chapel.webp"); }
+  33%, 63% { background-image: url("../home-page-slideshow/worship.webp"); }
+  66%, 96% { background-image: url("../home-page-slideshow/serve-day.webp"); }
+  100% { background-image: url("../home-page-slideshow/chapel.webp"); }
+}
+
+.upcoming
+{
+    position: relative;
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    width: 400px;
+    height: 50px;
+    border: 1px solid #1F2A42;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom:10px;
+
+    .see-more
+    {
+      position: right;
+      width: inherit;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: auto;
+      width: 50px;
+      height: 10px;
+      border: 1px solid #1F2A42;
+      padding: 20px;
+      margin-top: 10px;
+      margin-bottom:10px;
+      margin-right: 170px;
+
+      text-align: center;
+    }
+}
+
+#upcoming-event-title-container
+{
+  .upcoming-event-title
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+        text-align: right;
+    }
+}
+
+#upcoming-event-credit-container
+{
+  .upcoming-event-credit
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+}
+
+#upcoming-event-datetime-container
+{
+  .upcoming-event-date
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+
+  .upcoming-event-time
+  {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+}
+
+
+/*This is the CSS for the interest form page.*/
+
+form{
+    position: relative;
+    margin: auto;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: flex-start;
+    font-size: 20px;
+}
+
+#form-instructions{
+  font-size: 20px;
+  margin-left: 25px;
+  margin-right: 75px;
+}
 
 
 
-
+/*This is the CSS for the calendar page.*/
 body1 {
   display: flex;
-  margin-top: 50px;
   justify-content: center;
-  background-color: #FFFCFF;
+  background-color: #7998AC;
 }
+
 button {
   width: 75px;
   cursor: pointer;
@@ -178,19 +285,20 @@ button {
   outline: none;
   padding: 5px;
   border-radius: 5px;
-  color: white;
+  color: #1F2A42;
 }
 
 #month-head {
   padding: 10px;
-  color: #d36c6c;
+  color: #1F2A42
+;
   font-size: 26px;
   font-family: sans-serif;
   display: flex;
   justify-content: space-between;
 }
 #month-head button {
-  background-color:#92a1d1;
+  background-color:#CFD8E2;
 }
 #month-container {
   width: 770px;
@@ -198,7 +306,7 @@ button {
 #weekdays {
   width: 100%;
   display: flex;
-  color: #247BA0;
+  color: #1F2A42;
 }
 #weekdays div {
   width: 100px;
@@ -209,6 +317,7 @@ button {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 20px;
 }
 .day {
   width: 100px;
@@ -216,7 +325,7 @@ button {
   height: 100px;
   cursor: pointer;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #CFD8E2;
   margin: 5px;
   box-shadow: 0px 0px 3px #CBD4C2;
   display: flex;
@@ -228,20 +337,20 @@ button {
 }
 
 .day + #currentDay {
-  background-color:#e8f4fa;
+  background-color:#91A9B9;
 }
 .event {
   font-size: 10px;
   padding: 3px;
-  background-color: #58bae4;
-  color: white;
+  background-color: #F3F5F8;
+  color: #1F2A42;
   border-radius: 5px;
   max-height: 55px;
   overflow: hidden;
 }
 .padding {
   cursor: default !important;
-  background-color: #FFFCFF !important;
+  background-color: #7998AC !important;
   box-shadow: none !important;
 }
 #newEventModal, #deleteEventModal {
@@ -249,7 +358,7 @@ button {
   z-index: 20;
   padding: 25px;
   background-color: #e8f4fa;
-  box-shadow: 0px 0px 3px black;
+  box-shadow: 0px 0px 3px #1F2A42;
   border-radius: 5px;
   width: 350px;
   top: 100px;
@@ -288,4 +397,56 @@ button {
   height: 100vh;
   position: absolute;
   background-color: rgba(0,0,0,0.8);
+}
+
+/*This is the CSS for the about us page.*/
+#about-body-container{
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: flex-start;
+}
+
+#bio-name-container{
+  text-align: center;
+  left: 0;
+  width: inherit;
+  display: flex;
+  font-style: italic;
+  font-size: 1.2em;
+  margin: 20px;
+  color: #F3F5F8;
+  justify-content: flex-start;
+}
+
+#bio-container {
+    text-align: right;
+    left: 0;
+    width: inherit;
+    display: flex;
+}
+
+#bio-text{
+    text-align: left;
+    left: 0;
+    width: inherit;
+    display: flex;
+    font-size: 1.2em;
+    margin: 20px;
+    color: #F3F5F8;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-bottom: 58px;
+}
+
+.bio-image{
+    padding: 10px;
+    display: block;
+    margin-right: 10px;
+    align-items: center;
+    width: auto;
+    float: left;
+    border-radius: 10px;
 }
