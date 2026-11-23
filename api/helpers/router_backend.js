@@ -10,11 +10,10 @@ const db = require("../db.js");
 const router = express.Router();
 
 // use this router for updating
-const beRouter = require("./router_backend_update");
-router.use("/ud", beRouter);
-
-router.post('events', async (req, res)=>{
-    const settings = req.body;
+const beudRouter = require("./router_backend_update");
+router.use("/ud", beudRouter);
+router.get('/events', async (req, res)=>{
+    //const settings = req.body;
 
      // create query
     let query = `
@@ -41,7 +40,21 @@ router.post('events', async (req, res)=>{
 
     // select
     let result = (await db.pgGetPool().query(query)).rows
-    return result
+    res.status(200).json(result);
+})
+
+// get a list of 
+router.get('/people', async (req, res) => {
+    let query = `SELECT id, last_name, first_name FROM people;`
+
+    try{
+        let people_data = (await db.pgGetPool().query(query)).rows
+        res.status(200).json(people_data)
+    }
+    catch (e) {
+        // on error return error
+        res.status(500).json({status: "error", message: e})
+    }
 })
 
 module.exports = router;
