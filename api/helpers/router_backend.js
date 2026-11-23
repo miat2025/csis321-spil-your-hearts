@@ -18,6 +18,7 @@ router.get('/events', async (req, res)=>{
      // create query
     let query = `
     SELECT 
+        e.id,
         e.title,
         e.date,
         COALESCE(e.new_time_start, ct.time_start) AS time_start,
@@ -35,8 +36,7 @@ router.get('/events', async (req, res)=>{
     JOIN series s
         ON e.event_series_id = s.id
     WHERE date >= CURRENT_DATE 
-    ORDER BY date 
-    ASC LIMIT 5;`
+    ORDER BY date;`
 
     // select
     let result = (await db.pgGetPool().query(query)).rows

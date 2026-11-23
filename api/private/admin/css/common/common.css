@@ -1,0 +1,40 @@
+#main-container {
+    position:relative;
+    padding:10px;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+.admin-table {
+    width: fit-content;
+    th, td {
+        padding:7px;
+    }
+}
+
+
+
+
+.inter-thin {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.inter-regular {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inter-bold {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+

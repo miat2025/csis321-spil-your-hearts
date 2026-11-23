@@ -41,19 +41,32 @@ class EventsTable extends TableManager {
         // iterate through data
         for(const row of events) {
             // create row element
+            let row_element = document.createElement("tr");
 
             // add id
+            let id_ele = document.createElement("td");
+            id_ele.textContent = row.id;
 
             // add date
+            let date_ele = document.createElement("td");
+            date_ele.textContent = row.date;
 
             // add chaple title
+            let ct_ele = document.createElement("td");
+            ct_ele.textContent = row.title;
 
             // add time
+            let time_ele = document.createElement("td");
+            time_ele.textContent = row.time_start;
 
             // add speaker
+            let speaker = document.createElement("td");
 
             // add host
+            let host_ele = document.createElement("td");
 
+            row_element.append(id_ele, date_ele,ct_ele,time_ele,speaker,host_ele);
+            table.append(row_element)
         }
     }
 }
