@@ -134,3 +134,310 @@
         }
     }
 }
+
+/*This is the CSS for the main page.*/
+.slideshow
+{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin: 0 auto;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-image: url("../home-page-slideshow/chapel.webp");
+  animation: changeBackground 12s infinite;
+}
+
+@keyframes changeBackground {
+  0%, 30% { background-image: url("../home-page-slideshow/chapel.webp"); }
+  33%, 63% { background-image: url("../home-page-slideshow/worship.webp"); }
+  66%, 96% { background-image: url("../home-page-slideshow/serve-day.webp"); }
+  100% { background-image: url("../home-page-slideshow/chapel.webp"); }
+}
+
+.upcoming
+{
+    position: relative;
+    width: inherit;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    width: 400px;
+    height: 50px;
+    border: 1px solid #1F2A42;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom:10px;
+
+    .see-more
+    {
+      position: right;
+      width: inherit;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: auto;
+      width: 50px;
+      height: 10px;
+      border: 1px solid #1F2A42;
+      padding: 20px;
+      margin-top: 10px;
+      margin-bottom:10px;
+      margin-right: 170px;
+
+      text-align: center;
+    }
+}
+
+#upcoming-event-title-container
+{
+  .upcoming-event-title
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+        text-align: right;
+    }
+}
+
+#upcoming-event-credit-container
+{
+  .upcoming-event-credit
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+}
+
+#upcoming-event-datetime-container
+{
+  .upcoming-event-date
+    {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+
+  .upcoming-event-time
+  {
+        padding: 6px;
+        font-size: 1.5em;
+        width: fit-content;
+        margin-top: 10px;
+        color: #1F2A42;
+    }
+}
+
+
+/*This is the CSS for the interest form page.*/
+
+form{
+    position: relative;
+    margin: auto;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: flex-start;
+    font-size: 20px;
+}
+
+#form-instructions{
+  font-size: 20px;
+  margin-left: 25px;
+  margin-right: 75px;
+}
+
+
+
+/*This is the CSS for the calendar page.*/
+body1 {
+  display: flex;
+  justify-content: center;
+  background-color: #7998AC;
+}
+
+button {
+  width: 75px;
+  cursor: pointer;
+  box-shadow: 0px 0px 2px gray;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 5px;
+  color: #1F2A42;
+}
+
+#month-head {
+  padding: 10px;
+  color: #1F2A42
+;
+  font-size: 26px;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+#month-head button {
+  background-color:#CFD8E2;
+}
+#month-container {
+  width: 770px;
+}
+#weekdays {
+  width: 100%;
+  display: flex;
+  color: #1F2A42;
+}
+#weekdays div {
+  width: 100px;
+  padding: 10px;
+}
+#calendar {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+.day {
+  width: 100px;
+  padding: 10px;
+  height: 100px;
+  cursor: pointer;
+  box-sizing: border-box;
+  background-color: #CFD8E2;
+  margin: 5px;
+  box-shadow: 0px 0px 3px #CBD4C2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.day:hover {
+  background-color: #e8faed;
+}
+
+.day + #currentDay {
+  background-color:#91A9B9;
+}
+.event {
+  font-size: 10px;
+  padding: 3px;
+  background-color: #F3F5F8;
+  color: #1F2A42;
+  border-radius: 5px;
+  max-height: 55px;
+  overflow: hidden;
+}
+.padding {
+  cursor: default !important;
+  background-color: #7998AC !important;
+  box-shadow: none !important;
+}
+#newEventModal, #deleteEventModal {
+  display: none;
+  z-index: 20;
+  padding: 25px;
+  background-color: #e8f4fa;
+  box-shadow: 0px 0px 3px #1F2A42;
+  border-radius: 5px;
+  width: 350px;
+  top: 100px;
+  left: calc(50% - 175px);
+  position: absolute;
+  font-family: sans-serif;
+}
+#eventTitleInput {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 3px gray;
+}
+#eventTitleInput.error {
+  border: 2px solid red;
+}
+#cancelButton, #deleteButton {
+  background-color: #d36c6c;
+}
+#saveButton, #closeButton {
+  background-color: #92a1d1;
+}
+#eventText {
+  font-size: 14px;
+}
+#modalBackDrop {
+  display: none;
+  top: 0px;
+  left: 0px;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+}
+
+/*This is the CSS for the about us page.*/
+#about-body-container{
+    position: relative;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #7998AC;
+    align-items: flex-start;
+}
+
+#bio-name-container{
+  text-align: center;
+  left: 0;
+  width: inherit;
+  display: flex;
+  font-style: italic;
+  font-size: 1.2em;
+  margin: 20px;
+  color: #F3F5F8;
+  justify-content: flex-start;
+}
+
+#bio-container {
+    text-align: right;
+    left: 0;
+    width: inherit;
+    display: flex;
+}
+
+#bio-text{
+    text-align: left;
+    left: 0;
+    width: inherit;
+    display: flex;
+    font-size: 1.2em;
+    margin: 20px;
+    color: #F3F5F8;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-bottom: 58px;
+}
+
+.bio-image{
+    padding: 10px;
+    display: block;
+    margin-right: 10px;
+    align-items: center;
+    width: auto;
+    float: left;
+    border-radius: 10px;
+}

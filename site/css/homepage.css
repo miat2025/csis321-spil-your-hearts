@@ -134,6 +134,28 @@
     }
 }
 
+.slideshow
+{
+  position: relative;
+  width: 80%;
+  aspect-ratio: 16/9;
+  margin: 0 auto;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-image: url("../home-page-slideshow/chapel.webp");
+  animation: changeBackground 12s infinite;
+}
+
+@keyframes changeBackground {
+  0%, 30% { background-image: url("../home-page-slideshow/chapel.webp"); }
+  33%, 63% { background-image: url("../home-page-slideshow/worship.webp"); }
+  66%, 96% { background-image: url("../home-page-slideshow/serve-day.webp"); }
+  100% { background-image: url("../home-page-slideshow/chapel.webp"); }
+}
+
 .upcoming
 {
     position: relative;
