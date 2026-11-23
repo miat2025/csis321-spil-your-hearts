@@ -136,6 +136,15 @@
 }
 
 /*This is the CSS for the main page.*/
+#slideshow
+{
+  margin: auto;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background-color: black;
+}
+
 .slideshow
 {
   position: relative;

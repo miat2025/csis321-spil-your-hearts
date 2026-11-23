@@ -134,12 +134,24 @@
     }
 }
 
+#slideshow
+{
+  margin: auto;
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+  background-color: black;
+}
+
 .slideshow
 {
   position: relative;
   width: 80%;
   aspect-ratio: 16/9;
+  max-height: 600px;
   margin: 0 auto;
+  margin-top: 20px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -151,7 +163,7 @@
 
 @keyframes changeBackground {
   0%, 30% { background-image: url("../home-page-slideshow/chapel.webp"); }
-  33%, 63% { background-image: url("../home-page-slideshow/worship.webp"); }
+  33%, 63% { background-image: url("../home-page-slideshow/worship-2.webp"); }
   66%, 96% { background-image: url("../home-page-slideshow/serve-day.webp"); }
   100% { background-image: url("../home-page-slideshow/chapel.webp"); }
 }
