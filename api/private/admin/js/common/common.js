@@ -23,3 +23,32 @@ async function fetchGet(link) {
 async function fetchGetBackend(route) {
     return await fetchGet(`${window.location.origin}/be` + route)
 }
+
+function parseSvg(string){
+    let svg_pre = dompar.parseFromString(string, 'text/html')
+    return drop_icon = svg_pre.body.firstElementChild;
+}
+
+
+class TableManager {
+    /**
+     * Create manager
+     * @param {Document} table table node
+     */
+    constructor (table) {
+        this.table_element = table; // hold the dom element
+    }
+
+    /**
+     * Return the head node for the head
+     */
+    getHead(){return this.table_element.querySelector("thead").querySelector("tr");}
+
+    getBody(){return this.table_element.querySelector("tbody");}
+
+    getTable() {return this.table_element}
+
+    populateTable() {
+        ; // dummy for overloading
+    }
+}
