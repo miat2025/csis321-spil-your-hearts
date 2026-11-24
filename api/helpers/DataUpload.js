@@ -84,7 +84,7 @@ class DataUpload {
         let inputHeaders = new Set(header);
 
         // check if there is a length
-        if (!inputHeaders.length) {
+        if (!header.length) {
             throw new Error("Header array is empty!")
         }
 

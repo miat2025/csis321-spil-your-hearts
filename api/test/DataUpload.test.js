@@ -1,9 +1,9 @@
-const DataUpload = require("../helpers/DataUpload.js")
+const DataUploadList = require("../helpers/DataUpload.js")
 
 
 describe('DataUpload class tester', () => {
     describe('given a 1d array header', () => {
-        let o = new DataUpload(null, null);
+        let o = new DataUploadList['series'](null, null);
 
         test('with correct header data', () => {
             let header = ["id", "ele"];
@@ -13,6 +13,7 @@ describe('DataUpload class tester', () => {
 
         test('with header data of length one', () => {
             let header = [];
+            
             expect(o.headerVerification(header)).toThrow('Header array is empty!');
         });
     });

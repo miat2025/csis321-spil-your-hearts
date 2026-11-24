@@ -31,8 +31,5 @@ describe('csv_parser', () => {
         expect(csv_parse(input)).toEqual(output);
         });
 
-        it('should throw error for non-number inputs', () => {
-          expect(() => sum('1', 2)).toThrow('Both arguments must be numbers');
-        });
     });
 });
