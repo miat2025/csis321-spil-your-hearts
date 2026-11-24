@@ -83,6 +83,11 @@ class DataUpload {
     headerVerification(header) {
         let inputHeaders = new Set(header);
 
+        // check if there is a length
+        if (!header.length) {
+            return false;
+        }
+
         // ensure required columns are in input header
         for(const reqired_cols of [...this.valid_min_cols]){
             //if the column does not has minimum required, error
