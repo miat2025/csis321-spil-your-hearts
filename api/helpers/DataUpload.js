@@ -85,7 +85,7 @@ class DataUpload {
 
         // check if there is a length
         if (!header.length) {
-            throw new Error("Header array is empty!")
+            return false;
         }
 
         // ensure required columns are in input header

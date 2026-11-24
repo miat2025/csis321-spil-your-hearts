@@ -13,8 +13,8 @@ describe('DataUpload class tester', () => {
 
         test('with header data of length one', () => {
             let header = [];
-            
-            expect(o.headerVerification(header)).toThrow('Header array is empty!');
+
+            expect(o.headerVerification(header)).toBe(false);
         });
     });
 });
