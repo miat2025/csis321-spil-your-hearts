@@ -6,3 +6,5 @@ api/csv
 .DS_Store
 updates.sql
 .DS_Store
+playground.js
+test/*.csv
