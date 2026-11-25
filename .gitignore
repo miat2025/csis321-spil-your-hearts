@@ -7,4 +7,4 @@ api/csv
 updates.sql
 .DS_Store
 playground.js
-test/*.csv
+*.csv
