@@ -115,11 +115,7 @@ class DataUpload {
      */
     createQuery(header, placeholder) {
         const headerStr = DataUpload.getColumns(header)
-        let r = `
-            INSERT into ${this.table_name} (${headerStr})
-            VALUES ${placeholder}
-            ${this.generateOnConflict(header)}
-        `;  
+        let r = `INSERT into ${this.table_name} (${headerStr}) VALUES ${placeholder} ${this.generateOnConflict(header)}`;  
         return r;
     }
 
@@ -148,9 +144,7 @@ class DataUpload {
         }
         
         // create template
-        let r = `ON CONFLICT (${[...this.on_conflict_cols].join(',')}) DO UPDATE SET 
-            ${updating_cols.join(",")}
-        `
+        let r = `ON CONFLICT (${[...this.on_conflict_cols].join(',')}) DO UPDATE SET ${updating_cols.join(",")}`
         return r;
     }
 
