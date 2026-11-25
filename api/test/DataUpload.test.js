@@ -113,12 +113,11 @@ describe('DataUploadPeople class tester', () => {
 
     describe('given a 2d array of data', () => {
 
-        test('with missing columns', async () => {
+        test('with missing column', async () => {
 
             let o = new DataUploadList['people'](null, null);
             let input = [[ 'last_name', 'is_gfu', 'email' ],[ 'Baker', true, 'president@georgefox.edu' ],[ 'Debolt', true, 'ddebolt@georgefox.edu' ],[ 'Murillo', true, 'cmurillo@georgefox.edu' ],[ 'St.Cyr', true, 'rstcyr@georgefox.edu' ],[ 'Peterson', true, 'jpeterson@georgefox.edu' ],[ 'Fernandez', true, 'fernandezc@georgefox.edu' ]]
-            let t = await o.parse_data(input);
-            expect(t).toEqual({insert_query, insert_data})
+            await expect(o.parse_data(input)).rejects.toThrow("invalid columns from file");
 
         });
     });
