@@ -248,6 +248,17 @@
     }
 }
 
+.interest-image{
+    padding: 10px;
+    display: block;
+    margin-right: 0px;
+    width: 300px;
+    height: 100px;
+    align-items: center;
+    width: auto;
+    float: left;
+}
+
 
 /*This is the CSS for the interest form page.*/
 
