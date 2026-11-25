@@ -1,6 +1,5 @@
 const csv_parse = require("../helpers/data_parse.js")
 
-<<<<<<< HEAD
 describe('data_parse class tester', () => {
     describe('given a 1d array header', () => {
         let o = new csv_parse(null, null);
@@ -33,7 +32,7 @@ describe('given a 2d array data', () => {
         expect(o.dataVerification(data)).toBe(false);
     });
 });
-=======
+
 describe('csv_parser', () => {
     describe('csv_parse()', () => {
         it('should output an array of data', () => {
@@ -67,4 +66,4 @@ describe('csv_parser', () => {
 
     });
 });
->>>>>>> 1a4a56dabb3f16551973a3d5d49539c4368f10e1
+
