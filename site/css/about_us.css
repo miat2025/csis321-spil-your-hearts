@@ -180,7 +180,9 @@
     display: block;
     margin-right: 10px;
     align-items: center;
-    width: auto;
+    aspect-ratio: 1/1;
+    max-width: 200px;
+    max-height: 200px;
     float: left;
     border-radius: 10px;
 }
