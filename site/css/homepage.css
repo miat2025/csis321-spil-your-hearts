@@ -151,9 +151,10 @@
   width: 80%;
   aspect-ratio: 16/9;
   max-height: 500px;
-  margin: 0 auto;
+  margin-left:auto;
+  margin-right:auto;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -164,10 +165,10 @@
 }
 
 @keyframes changeBackground {
-  0%, 30% { background-image: url("../home-page-slideshow/chapel.webp"); }
-  33%, 63% { background-image: url("../home-page-slideshow/worship.webp"); }
-  66%, 96% { background-image: url("../home-page-slideshow/serve-day.webp"); }
-  100% { background-image: url("../home-page-slideshow/chapel.webp"); }
+  0%, 30% { background-image: url("../home-page/chapel.webp"); }
+  33%, 63% { background-image: url("../home-page/worship.webp"); }
+  66%, 96% { background-image: url("../home-page/serve-day.webp"); }
+  100% { background-image: url("../home-page/chapel.webp"); }
 }
 
 .upcoming
@@ -277,3 +278,31 @@
       text-align: center;
     }
 }
+
+.interest-image{
+    position: relative;
+    padding: 10px;
+    display: block;
+    margin-right: 45px;
+    aspect-ratio: 1/0.85;
+    max-width: 500px;
+    max-height: 500px;
+    align-items: center;
+    width: auto;
+    float: left;
+}
+
+.interest-link
+    {
+      position: right;
+      width: inherit;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: auto;
+      margin-top: 10px;
+      margin-bottom:10px;
+      margin-left: 100px;
+
+      text-align: center;
+    }
